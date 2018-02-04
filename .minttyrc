@@ -1,0 +1,8 @@
+BoldAsFont=-1
+Term=xterm
+CtrlShiftShortcuts=yes
+Transparency=high
+Font=Ricty Diminished
+FontHeight=11
+BellType=0
+BackspaceSendsBS=yes
