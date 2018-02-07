@@ -27,7 +27,6 @@ set wildmode=list:longest
 nnoremap j gj
 nnoremap k gk
 
-
 " Tab系
 " Tab文字を半角スペースにする
 set expandtab
@@ -43,8 +42,6 @@ set smartindent
 " autocmd FileType * setlocal formatoptions-=r
 " autocmd FileType * setlocal formatoptions-=o
 
-
-
 " 検索系
 " 検索文字列入力時に順次対象文字列にヒットさせる
 set incsearch
@@ -54,7 +51,6 @@ set wrapscan
 set hlsearch
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
 
 " NeoBundle
 filetype off
