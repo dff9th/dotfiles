@@ -15,8 +15,6 @@ set backspace=indent,eol,start
 set cursorline
 " 行末の1文字先までカーソルを移動できるように
 set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
 " ビープ音を可視化
 set visualbell
 " 括弧入力時の対応する括弧を表示
@@ -38,6 +36,13 @@ set tabstop=4
 " 行頭でのTab文字の表示幅
 set shiftwidth=4
 set softtabstop=4
+" インデントはスマートインデント
+set smartindent
+" 改行時の自動コメント挿入を無効化
+" ~/.vim/after/plugin/common.vimに以下を記載
+" autocmd FileType * setlocal formatoptions-=r
+" autocmd FileType * setlocal formatoptions-=o
+
 
 
 " 検索系
@@ -74,6 +79,8 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'rhysd/vim-clang-format'
+NeoBundle 'kana/vim-operator-user'
 call neobundle#end()
 filetype plugin indent on     " required!
 filetype indent on
@@ -102,4 +109,17 @@ call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    '#151515')
 call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
 call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
+
+map f= <Plug>(operator-clang-format)
+
+" clang-format
+" アクセス指定子は1インデント分下げる
+" C++11 の機能を使う
+let g:clang_format#style_options = {
+            \ "BasedOnStyle" : 'Google',
+            \ "TabWidth" : 4,
+            \ "UseTab" : 'Never',
+            \ "AccessModifierOffset" : -4,
+            \ "Standard" : "C++11",
+            \ }
 

@@ -58,4 +58,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
 
     # for graphical vim
     # export TERM='xterm-256color'
+    # display is disturbed when we set xterm-256color, so do following
+    alias tmux='tmux -2'
 fi
