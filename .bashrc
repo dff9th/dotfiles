@@ -40,6 +40,9 @@ if [ "$(uname)" == 'Darwin' ]; then
 elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # for Windows MSYS2
 
+    # move current directory to home one at boot
+    cd
+
     # set mintty color Solarized
     source /etc/mintty-colors-solarized/sol.dark
     # set ls color Solarized

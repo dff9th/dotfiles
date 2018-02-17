@@ -1,114 +1,76 @@
-" ファイル系
-set nobackup	" バックアップ作らない
-set noswapfile	" swpファイル作らない
+"""""""""" dein.vim start """"""""""
+if &compatible
+    set nocompatible
+endif
+set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state(expand('~/.vim/dein'))
+    call dein#begin(expand('~/.vim/dein'))
+" plugin load begin
+    call dein#add(expand('~/.vim/dein/repos/github.com/Shougo/dein.vim'))
+    call dein#add('Shougo/deoplete.nvim')
+    if !has('nvim')
+        call dein#add('roxma/nvim-yarp')
+        call dein#add('roxma/vim-hug-neovim-rpc')
+    endif
+    call dein#add('scrooloose/syntastic')
+    call dein#add('itchyny/lightline.vim')
+    call dein#add('tomasr/molokai')
+    call dein#add('scrooloose/nerdtree')
+    call dein#add('rhysd/vim-clang-format')
+    call dein#add('kana/vim-operator-user')
+" plugin load end
+    call dein#end()
+    call dein#save_state()
+endif
+"""""""""" dein.vim end """"""""""
 
-" GUI系
-set background=dark
-set t_Co=256
-" set guifont=RictyDiscord-Regular:h14
-set number
-set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8,euc-jp,sjis
-set backspace=indent,eol,start
-" 現在の行を強調表示
-set cursorline
-" 行末の1文字先までカーソルを移動できるように
-set virtualedit=onemore
-" ビープ音を可視化
-set visualbell
-" 括弧入力時の対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
-set laststatus=2
-" コマンドラインの補完
-set wildmode=list:longest
-" 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
+"""""""""" set valiables begin """"""""""
+set nobackup	                    " バックアップ作らない
+set noswapfile	                    " swpファイル作らない
+set undofile                        " vim終了後もundoできるように
+set t_Co=256                        " 256色カラー表示
+set number                          " 行番号表示
+set encoding=utf-8                  " vim上のバッファで用いる文字コード
+set fenc=utf-8                      " 書き込み時の文字コード
+set fileencodings=utf-8,euc-jp,sjis " 左優先で入力の文字コード判定後fencに設定
+set backspace=indent,eol,start      " BSで削除可能に
+set cursorline                      " 現在の行を強調表示
+set virtualedit=onemore             " 行末+1カーソル移動可能に
+set visualbell                      " ビープ音を可視化
+set showmatch                       " 対応括弧を強調表示
+set laststatus=2                    " ステータスラインを常に表示
+set wildmode=list:longest           " コマンドラインの補完
+set incsearch                       " 検索順次ヒット
+set wrapscan                        " 検索順次ヒットループ
+set hlsearch                        " 検索ヒットハイライト
+set expandtab                       " Tab文字を半角スペースに
+set tabstop=4                       " 入力ファイル中の既存Tabの空白幅
+set softtabstop=4                   " キー入力したTabの空白幅
+set shiftwidth=4                    " インデント時の空白幅
+set smartindent                     " c言語ベースのインデント方式
+filetype plugin indent on           " ファイルタイプ別設定実行
+syntax enable                       " 構文ハイライト
+colorscheme molokai                 " カラースキーム (dein後に指定)
+"""""""""" set valiables end """"""""""
 
-" Tab系
-" Tab文字を半角スペースにする
-set expandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=4
-" 行頭でのTab文字の表示幅
-set shiftwidth=4
-set softtabstop=4
-" インデントはスマートインデント
-set smartindent
-" 改行時の自動コメント挿入を無効化
+" 改行時の自動コメント挿入の無効化方法
 " ~/.vim/after/plugin/common.vimに以下を記載
 " autocmd FileType * setlocal formatoptions-=r
 " autocmd FileType * setlocal formatoptions-=o
 
-" 検索系
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
+"""""""""" set map begin """"""""""
+" 折り返し時に表示行単位での移動できるように
+nmap j gj
+nmap k gk
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
-" NeoBundle
-filetype off
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
-  set runtimepath+=~/.vim/bundle/neobundle.vim
-endif
-call neobundle#begin(expand('~/.vim/bundle/'))
-" originalrepos on github
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
-  \ }
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'rhysd/vim-clang-format'
-NeoBundle 'kana/vim-operator-user'
-call neobundle#end()
-filetype plugin indent on     " required!
-filetype indent on
-syntax on
-NeoBundleCheck
-
-colorscheme molokai
-
 " NerdTreeショートカット
-nnoremap <silent><C-n> :NERDTreeToggle<CR>
+nmap <silent><C-n> :NERDTreeToggle<CR>
+" clang-formatでインデント実行
+nmap f= <Plug>(operator-clang-format)
+"""""""""" set map end """"""""""
 
-" NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
-endfunction
-call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
-call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  '#151515')
-call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    '#151515')
-call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    '#151515')
-call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
-call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
-call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
-
-map f= <Plug>(operator-clang-format)
-
-" clang-format
+" clang-format setting
 " アクセス指定子は1インデント分下げる
 " C++11 の機能を使う
 let g:clang_format#style_options = {
