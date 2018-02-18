@@ -18,10 +18,21 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#add('scrooloose/nerdtree')
     call dein#add('rhysd/vim-clang-format')
     call dein#add('kana/vim-operator-user')
+    call dein#add('justmao945/vim-clang')
+    call dein#add('vim-scripts/DoxygenToolkit.vim')
+    call dein#add('Shougo/unite.vim')
+    call dein#add('Shougo/neocomplete')
+    "call dein#add('embear/vim-localvimrc')
 " plugin load end
     call dein#end()
     call dein#save_state()
 endif
+" 不足プラグインの自動インストール
+if has('vim_starting') && dein#check_install()
+    call dein#install()
+endif
+filetype plugin indent on           " ファイルタイプ別設定実行
+syntax enable                       " 構文ハイライト
 """""""""" dein.vim end """"""""""
 
 """""""""" set valiables begin """"""""""
@@ -36,7 +47,6 @@ set fileencodings=utf-8,euc-jp,sjis " 左優先で入力の文字コード判定
 set backspace=indent,eol,start      " BSで削除可能に
 set cursorline                      " 現在の行を強調表示
 set virtualedit=onemore             " 行末+1カーソル移動可能に
-set visualbell                      " ビープ音を可視化
 set showmatch                       " 対応括弧を強調表示
 set laststatus=2                    " ステータスラインを常に表示
 set wildmode=list:longest           " コマンドラインの補完
@@ -48,8 +58,6 @@ set tabstop=4                       " 入力ファイル中の既存Tabの空白
 set softtabstop=4                   " キー入力したTabの空白幅
 set shiftwidth=4                    " インデント時の空白幅
 set smartindent                     " c言語ベースのインデント方式
-filetype plugin indent on           " ファイルタイプ別設定実行
-syntax enable                       " 構文ハイライト
 colorscheme molokai                 " カラースキーム (dein後に指定)
 """""""""" set valiables end """"""""""
 
@@ -60,15 +68,30 @@ colorscheme molokai                 " カラースキーム (dein後に指定)
 
 """""""""" set map begin """"""""""
 " 折り返し時に表示行単位での移動できるように
-nmap j gj
-nmap k gk
+noremap j gj
+noremap k gk
+" jとkの変更による影響対処
+noremap dj dj
+noremap dk dk
+noremap yj yj
+noremap yk yk
+" タブ関連　
+noremap tt :tabnew<CR>
+noremap tp :tab sp<CR>
+noremap <C-h> gT
+noremap <C-l> gt
+noremap <C-w><C-h> :tabmove -1<CR>
+noremap <C-w><C-l> :tabmove +1<CR>
 " ESC連打でハイライト解除
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+noremap <Esc><Esc> :nohlsearch<CR><Esc>
 " NerdTreeショートカット
-nmap <silent><C-n> :NERDTreeToggle<CR>
+noremap <silent><C-n> :NERDTreeToggle<CR>
 " clang-formatでインデント実行
-nmap f= <Plug>(operator-clang-format)
+map f= <Plug>(operator-clang-format)
 """""""""" set map end """"""""""
+
+" vim-localvimrc setting
+"let g:localvimrc_ask = 0        " .lvimrcを確認なしで読み込む
 
 " clang-format setting
 " アクセス指定子は1インデント分下げる

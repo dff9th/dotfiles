@@ -6,3 +6,5 @@ Font=Ricty Diminished
 FontHeight=11
 BellType=0
 BackspaceSendsBS=yes
+Locale=ja_JP
+Charset=UTF-8
