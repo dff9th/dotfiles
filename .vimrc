@@ -22,14 +22,11 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#add('vim-scripts/DoxygenToolkit.vim')
     call dein#add('Shougo/unite.vim')
     call dein#add('Shougo/neocomplete')
+    call dein#add('plasticboy/vim-markdown')
     "call dein#add('embear/vim-localvimrc')
 " plugin load end
     call dein#end()
     call dein#save_state()
-endif
-" 不足プラグインの自動インストール
-if has('vim_starting') && dein#check_install()
-    call dein#install()
 endif
 filetype plugin indent on           " ファイルタイプ別設定実行
 syntax enable                       " 構文ハイライト
@@ -39,6 +36,7 @@ syntax enable                       " 構文ハイライト
 set nobackup	                    " バックアップ作らない
 set noswapfile	                    " swpファイル作らない
 set undofile                        " vim終了後もundoできるように
+set undodir=~/.vim/undodir          " vim終了後もundoできるように
 set t_Co=256                        " 256色カラー表示
 set number                          " 行番号表示
 set encoding=utf-8                  " vim上のバッファで用いる文字コード
@@ -104,3 +102,5 @@ let g:clang_format#style_options = {
             \ "Standard" : "C++11",
             \ }
 
+" vim-markdown settings
+let g:vim_markdown_folding_disabled = 1
