@@ -63,4 +63,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # export TERM='xterm-256color'
     # display is disturbed when we set xterm-256color, so do following
     alias tmux='tmux -2'
+
+    # youtube_dl
+    export PATH=/usr/lib/youtube_dl/bin:$PATH
 fi

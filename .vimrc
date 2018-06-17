@@ -66,14 +66,9 @@ colorscheme molokai                 " カラースキーム (dein後に指定)
 
 """""""""" set map begin """"""""""
 " 折り返し時に表示行単位での移動できるように
-"noremap j gj
-"noremap k gk
-" jとkの変更による影響対処
-"noremap dj dj
-"noremap dk dk
-"noremap yj yj
-"noremap yk yk
-" タブ関連　
+nnoremap j gj
+nnoremap k gk
+" タブ関連
 noremap tt :tabnew<CR>
 noremap tp :tab sp<CR>
 noremap <C-h> gT
@@ -104,3 +99,4 @@ let g:clang_format#style_options = {
 
 " vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
+
