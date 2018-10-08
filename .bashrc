@@ -37,7 +37,7 @@ if [ "$(uname)" == 'Darwin' ]; then
         return 0
     }
 
-elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
+elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' -o "$(expr substr $(uname -s) 1 4)"  == 'MSYS' ]; then
     # for Windows MSYS2
 
     # move current directory to home one at boot
@@ -49,6 +49,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     eval `dircolors /etc/dircolors-solarized/dircolors.ansi-dark`
 
     alias vi='vim'
+    alias g='git'
 
     # ls command colar
     alias ls='ls --color=auto'
