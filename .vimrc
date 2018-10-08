@@ -15,15 +15,16 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#add('scrooloose/syntastic')
     call dein#add('itchyny/lightline.vim')
     call dein#add('tomasr/molokai')
-    call dein#add('scrooloose/nerdtree')
     call dein#add('rhysd/vim-clang-format')
     call dein#add('kana/vim-operator-user')
     call dein#add('justmao945/vim-clang')
     call dein#add('vim-scripts/DoxygenToolkit.vim')
     call dein#add('Shougo/unite.vim')
-    call dein#add('Shougo/neocomplete')
+    "call dein#add('Shougo/neocomplete')
     call dein#add('plasticboy/vim-markdown')
-    "call dein#add('embear/vim-localvimrc')
+    call dein#add('embear/vim-localvimrc')
+    call dein#add('knockts/nerdtree_vimdiff')
+    call dein#add('ConradIrwin/vim-bracketed-paste')
 " plugin load end
     call dein#end()
     call dein#save_state()
@@ -52,11 +53,13 @@ set incsearch                       " 検索順次ヒット
 set wrapscan                        " 検索順次ヒットループ
 set hlsearch                        " 検索ヒットハイライト
 set expandtab                       " Tab文字を半角スペースに
-set tabstop=4                       " 入力ファイル中の既存Tabの空白幅
-set softtabstop=4                   " キー入力したTabの空白幅
-set shiftwidth=4                    " インデント時の空白幅
+set tabstop=2                       " 入力ファイル中の既存Tabの空白幅
+set softtabstop=2                   " キー入力したTabの空白幅
+set shiftwidth=2                    " インデント時の空白幅
 set smartindent                     " c言語ベースのインデント方式
 colorscheme molokai                 " カラースキーム (dein後に指定)
+" 81文字目以降の背景色を変更
+execute "set colorcolumn=" . join(range(81, 9999), ',') 
 """""""""" set valiables end """"""""""
 
 " 改行時の自動コメント挿入の無効化方法
@@ -100,3 +103,5 @@ let g:clang_format#style_options = {
 " vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
 
+" deoplete boot
+let g:deoplete#enable_at_startup = 1
