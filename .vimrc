@@ -75,8 +75,9 @@ nnoremap k gk
 " タブ関連
 noremap tt :tabnew<CR>
 noremap tp :tab sp<CR>
-noremap <C-h> gT
-noremap <C-l> gt
+nnoremap <C-h> gT
+nnoremap <BS> gT
+nnoremap <C-l> gt
 noremap <C-w><C-h> :tabmove -1<CR>
 noremap <C-w><C-l> :tabmove +1<CR>
 " ESC連打でハイライト解除
@@ -95,14 +96,15 @@ map f= <Plug>(operator-clang-format)
 " C++11 の機能を使う
 let g:clang_format#style_options = {
             \ "BasedOnStyle" : 'Google',
-            \ "TabWidth" : 4,
+            \ "TabWidth" : 2,
             \ "UseTab" : 'Never',
-            \ "AccessModifierOffset" : -4,
+            \ "AccessModifierOffset" : -2,
             \ "Standard" : "C++11",
             \ }
 
 " vim-markdown settings
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 0
 
 " deoplete boot
 let g:deoplete#enable_at_startup = 1
