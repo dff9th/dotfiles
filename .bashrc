@@ -61,6 +61,8 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' -o "$(expr substr $(uname -s
     alias la='ls -A'
     alias sl=ls
 
+    export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\[\e[1m\]#\[\e[0m\] '
+
     # for symbolic link on Windows
     export MSYS=winsymlinks:nativestrict
 
