@@ -15,7 +15,7 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#add('scrooloose/syntastic')
     call dein#add('itchyny/lightline.vim')
     call dein#add('tomasr/molokai')
-    call dein#add('knockts/nerdtree_vimdiff')
+    call dein#add('ndgrtbti/nerdtree')
     call dein#add('rhysd/vim-clang-format')
     call dein#add('kana/vim-operator-user')
     call dein#add('justmao945/vim-clang')
@@ -24,8 +24,8 @@ if dein#load_state(expand('~/.vim/dein'))
     "call dein#add('Shougo/neocomplete')
     call dein#add('plasticboy/vim-markdown')
     call dein#add('embear/vim-localvimrc')
-    call dein#add('knockts/nerdtree_vimdiff')
     call dein#add('ConradIrwin/vim-bracketed-paste')
+    "call dein#add('elzr/vim-json')
 " plugin load end
     call dein#end()
     call dein#save_state()
@@ -45,7 +45,7 @@ set encoding=utf-8                  " vim上のバッファで用いる文字コ
 set fenc=utf-8                      " 書き込み時の文字コード
 set fileencodings=utf-8,euc-jp,sjis " 左優先で入力の文字コード判定後fencに設定
 set backspace=indent,eol,start      " BSで削除可能に
-set cursorline                      " 現在の行を強調表示
+"set cursorline                      " 現在の行を強調表示
 set virtualedit=onemore             " 行末+1カーソル移動可能に
 set showmatch                       " 対応括弧を強調表示
 set laststatus=2                    " ステータスラインを常に表示
@@ -54,11 +54,12 @@ set incsearch                       " 検索順次ヒット
 set wrapscan                        " 検索順次ヒットループ
 set hlsearch                        " 検索ヒットハイライト
 set expandtab                       " Tab文字を半角スペースに
-set tabstop=2                       " 入力ファイル中の既存Tabの空白幅
-set softtabstop=2                   " キー入力したTabの空白幅
-set shiftwidth=2                    " インデント時の空白幅
+set tabstop=4                       " 入力ファイル中の既存Tabの空白幅
+set softtabstop=4                   " キー入力したTabの空白幅
+set shiftwidth=4                    " インデント時の空白幅
 set smartindent                     " c言語ベースのインデント方式
 colorscheme molokai                 " カラースキーム (dein後に指定)
+set clipboard=unnamed,autoselect    " vimとOSのクリップボード共有
 " 81文字目以降の背景色を変更
 execute "set colorcolumn=" . join(range(81, 9999), ',') 
 """""""""" set valiables end """"""""""
@@ -96,9 +97,9 @@ map f= <Plug>(operator-clang-format)
 " C++11 の機能を使う
 let g:clang_format#style_options = {
             \ "BasedOnStyle" : 'Google',
-            \ "TabWidth" : 2,
+            \ "TabWidth" : 4,
             \ "UseTab" : 'Never',
-            \ "AccessModifierOffset" : -2,
+            \ "AccessModifierOffset" : -4,
             \ "Standard" : "C++11",
             \ }
 

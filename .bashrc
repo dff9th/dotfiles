@@ -69,6 +69,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' -o "$(expr substr $(uname -s
     # display is disturbed when we set xterm-256color, so do following
     alias tmux='tmux -2'
 
-    # youtube_dl
-    export PATH=/usr/lib/youtube_dl/bin:$PATH
+    HISTSIZE=50000
+
 fi
