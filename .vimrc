@@ -63,7 +63,7 @@ set softtabstop=4                   " キー入力したTabの空白幅
 set shiftwidth=4                    " インデント時の空白幅
 set smartindent                     " c言語ベースのインデント方式
 set clipboard+=unnamed
-set ambiwidth=double
+set ambiwidth=double                " draw multibyte character with 2-wide
 
 " color settings
 "" comment color
@@ -84,10 +84,14 @@ set vb t_vb=                        " ビープ音オフ
 nnoremap j gj
 nnoremap k gk
 
-" in order to substitute for Ctrl-H over tmux
+" tab settings
+nnoremap tt :tabnew<CR>
+nnoremap <C-h> gT
+"" substitute for Ctrl-H over tmux
 nnoremap <BS> gT
 nnoremap <C-l> gt
 nnoremap <C-w><C-h> :tabmove -1<CR>
+"" substitute for Ctrl-H over tmux
 nnoremap <C-w><BS> :tabmove -1<CR>
 nnoremap <C-w><C-l> :tabmove +1<CR>
 " ESC連打でハイライト解除
@@ -96,7 +100,6 @@ nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 nnoremap <silent><C-n> :NERDTreeToggle<CR>
 " clang-formatでインデント実行
 vmap f= <Plug>(operator-clang-format)
-"""""""""" set map end """"""""""
 
 
 " clang-format setting
@@ -144,3 +147,6 @@ endif
 " Turn off paste mode when leaving insert
 autocmd InsertLeave * set nopaste
 
+" vim-syntastic settings
+let g:syntastic_cpp_compiler="gcc"
+let g:syntastic_cpp_compiler_options=" -std=c++11" 
