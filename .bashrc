@@ -4,6 +4,8 @@
 # for MSYS2 on Windows
 ################################################################################
 if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
+    # history front trace
+    [ -t 0 ] && stty stop undef
     ########################################
     # common settings
     ########################################
@@ -56,7 +58,7 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
         )
     }
     # git completion
-    source /usr/share/dotfiles/git-completion.bash
+    source /usr/share/git/completion/git-completion.bash
 
     ########################################
     # graphic
@@ -148,8 +150,6 @@ elif [ "$(uname)" == 'Darwin' ]; then
         done
         )
     }
-    # git completion
-    source /usr/share/dotfiles/git-completion.bash
 
 
 ################################################################################

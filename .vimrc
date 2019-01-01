@@ -1,4 +1,3 @@
-"""""""""" dein.vim start """"""""""
 if &compatible
     set nocompatible
 endif
@@ -37,11 +36,7 @@ if dein#load_state(expand('~/.vim/dein'))
 endif
 filetype plugin indent on           " ファイルタイプ別設定実行
 syntax enable                       " 構文ハイライト
-"""""""""" dein.vim end """"""""""
 
-"""""""""" set valiables begin """"""""""
-" コメントの色を深緑に
-autocmd ColorScheme * highlight Comment ctermfg=28 guifg=#008800
 set nobackup	                    " バックアップ作らない
 set noswapfile	                    " swpファイル作らない
 set undofile                        " vim終了後もundoできるように
@@ -68,20 +63,23 @@ set softtabstop=4                   " キー入力したTabの空白幅
 set shiftwidth=4                    " インデント時の空白幅
 set smartindent                     " c言語ベースのインデント方式
 set clipboard+=unnamed
-colorscheme molokai                 " カラースキーム (dein後に指定)
 set ambiwidth=double
-" 80行目移行灰色に
+
+" color settings
+"" comment color
+autocmd ColorScheme * highlight Comment ctermfg=28 guifg=#008800
+"" colorring gray after 80 column
 execute "set colorcolumn=" . join(range(81, 9999), ',')
+colorscheme molokai
+
 "set iskeyword-=_                   " 単語扱いの文字集合修正
 set vb t_vb=                        " ビープ音オフ
-"""""""""" set valiables end """"""""""
 
 " 改行時の自動コメント挿入の無効化方法
 " ~/.vim/after/plugin/common.vimに以下を記載
 " autocmd FileType * setlocal formatoptions-=r
 " autocmd FileType * setlocal formatoptions-=o
 
-"""""""""" set map begin """"""""""
 " move 
 nnoremap j gj
 nnoremap k gk
@@ -136,4 +134,13 @@ let g:localvimrc_ask = 0        " .lvimrcを確認なしで読み込む
 "let g:deoplete#enable_at_startup = 1    " boot at runiing vim
 "let g:deoplete#sources#clang#libclang_path = '/usr/lib64/llvm/libclang.so'
 "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+
+" not expand tab to spaces on Makefile
+let _curfile=expand("%:r")
+if _curfile == 'Makefile'
+  set noexpandtab
+endif
+
+" Turn off paste mode when leaving insert
+autocmd InsertLeave * set nopaste
 
