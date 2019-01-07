@@ -86,6 +86,7 @@ nnoremap k gk
 
 " tab settings
 nnoremap tt :tabnew<CR>
+nnoremap tp :tab sp<CR>
 nnoremap <C-h> gT
 "" substitute for Ctrl-H over tmux
 nnoremap <BS> gT
