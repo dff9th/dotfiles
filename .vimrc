@@ -6,30 +6,29 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#begin(expand('~/.vim/dein'))
 
     call dein#add(expand('~/.vim/dein/repos/github.com/Shougo/dein.vim'))
+    "call dein#add('Rykka/riv.vim')
     "call dein#add('Shougo/deoplete.nvim')
-    "call dein#add('zchee/deoplete-clang')
+    "call dein#add('kannokanno/previm')
     "call dein#add('tweekmonster/deoplete-clang2')
-    call dein#add('Shougo/neoinclude.vim')
-    call dein#add('scrooloose/syntastic')
-    call dein#add('itchyny/lightline.vim')
-    call dein#add('tomasr/molokai')
-    call dein#add('dff9th/nerdtree')
-    call dein#add('rhysd/vim-clang-format')
-    call dein#add('kana/vim-operator-user')
-    call dein#add('justmao945/vim-clang')
     "call dein#add('vim-scripts/DoxygenToolkit.vim')
-    call dein#add('Shougo/unite.vim')
+    "call dein#add('zchee/deoplete-clang')
     call dein#add('Shougo/neocomplete')
+    call dein#add('Shougo/neoinclude.vim')
+    call dein#add('Shougo/unite.vim')
+    call dein#add('aklt/plantuml-syntax')
+    call dein#add('dff9th/nerdtree')
+    call dein#add('embear/vim-localvimrc')
+    call dein#add('h1mesuke/vim-alignta')
+    call dein#add('itchyny/lightline.vim')
+    call dein#add('justmao945/vim-clang')
+    call dein#add('kana/vim-operator-user')
+    call dein#add('pangloss/vim-javascript')
     call dein#add('plasticboy/vim-markdown')
     call dein#add('previm/previm')
+    call dein#add('rhysd/vim-clang-format')
+    call dein#add('scrooloose/syntastic')
+    call dein#add('tomasr/molokai')
     call dein#add('tyru/open-browser.vim')
-    "call dein#add('Rykka/riv.vim')
-    call dein#add('plasticboy/vim-markdown')
-    call dein#add('aklt/plantuml-syntax')
-    call dein#add('h1mesuke/vim-alignta')
-    "call dein#add('kannokanno/previm')
-    call dein#add('embear/vim-localvimrc')
-    call dein#add('pangloss/vim-javascript')
     call dein#end()
 
     call dein#save_state()
@@ -115,7 +114,10 @@ let g:clang_format#style_options = {
             \ }
 
 " vim-markdown settings
+"" no folding
 let g:vim_markdown_folding_disabled = 1
+"" no indent at inserting line over list item
+let g:vim_markdown_new_list_item_indent = 0
 
 " previm settings
 nnoremap <silent> <C-p> :PrevimOpen<CR>
