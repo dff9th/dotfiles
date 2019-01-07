@@ -59,6 +59,7 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     }
     # git completion
     source /usr/share/git/completion/git-completion.bash
+    __git_complete g __git_main
 
     ########################################
     # graphic
