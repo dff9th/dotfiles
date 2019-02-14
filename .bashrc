@@ -25,11 +25,11 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # git diff output files
     function makegitdiff() {
         if [ $# -ne 3 ]; then
-            echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
+            echo "[ERROR] usage: makegitdiff <beforeCommit> <afterCommit> <outputDir>"
             return
         fi
-        local af=$1
-        local bf=$2
+        local bf=$1
+        local af=$2
         local outDir=$3
         if [ -e ${outDir} ]; then
             echo "ERROR: ${outDir} is already existed"
@@ -119,11 +119,11 @@ elif [ "$(uname)" == 'Darwin' ]; then
     # git diff output files
     function makegitdiff() {
         if [ $# -ne 3 ]; then
-            echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
+            echo "[ERROR] usage: makegitdiff <beforeCommit> <afterCommit> <outputDir>"
             return
         fi
-        local af=$1
-        local bf=$2
+        local bf=$1
+        local af=$2
         local outDir=$3
         if [ -e ${outDir} ]; then
             echo "ERROR: ${outDir} is already existed"
@@ -176,11 +176,11 @@ else
     # git diff output files
     function makegitdiff() {
         if [ $# -ne 3 ]; then
-            echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
+            echo "[ERROR] usage: makegitdiff <beforeCommit> <afterCommit> <outputDir>"
             return
         fi
-        local af=$1
-        local bf=$2
+        local bf=$1
+        local af=$2
         local outDir=$3
         if [ -e ${outDir} ]; then
             echo "ERROR: ${outDir} is already existed"
