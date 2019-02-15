@@ -23,8 +23,7 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#add('plasticboy/vim-markdown')
     call dein#add('previm/previm')
     call dein#add('tyru/open-browser.vim')
-    "call dein#add('Rykka/riv.vim')
-    call dein#add('plasticboy/vim-markdown')
+    call dein#add('Rykka/riv.vim')
     call dein#add('aklt/plantuml-syntax')
     call dein#add('h1mesuke/vim-alignta')
     "call dein#add('kannokanno/previm')
@@ -34,7 +33,9 @@ if dein#load_state(expand('~/.vim/dein'))
 
     call dein#save_state()
 endif
-filetype plugin indent on           " ファイルタイプ別設定実行
+filetype plugin on           " ファイルタイプ別設定実行
+" invalid filetype indent at rst file
+autocmd BufNewFile,BufRead *.rst filetype indent off
 syntax enable                       " 構文ハイライト
 
 set nobackup	                    " バックアップ作らない
@@ -151,3 +152,28 @@ autocmd InsertLeave * set nopaste
 " vim-syntastic settings
 let g:syntastic_cpp_compiler="gcc"
 let g:syntastic_cpp_compiler_options=" -std=c++11" 
+
+" lightline settings
+"" draw filename with relative path
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
+" invalidate folding
+set foldlevel=100
+
+" riv settings
+"" enable backspace key to delete CR
+let g:riv_ignored_imaps="<BS>"
+
