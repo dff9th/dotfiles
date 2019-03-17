@@ -209,33 +209,34 @@ else
         )
     }
     # git completion
-    source /usr/share/dotfiles/git-completion.bash
+    source /usr/local/share/git-completion/git-completion.bash
     # Source global definitions
     if [ -f /etc/bashrc ]; then
     	. /etc/bashrc
     fi
-    
+
     # Uncomment the following line if you don't like systemctl's auto-paging feature:
     # export SYSTEMD_PAGER=
-    
+
     # User specific aliases and functions
     export XDG_CONFIG_HOME="$HOME/.config"
     # expand path variable with tail '/' and TAB
     shopt -s direxpand
-    
+
     # pandoc
     alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
-    
+
     # history front trace
     [ -t 0 ] && stty stop undef
-    
+
+    HISTSIZE=50000
     export HISTCONTROL=erasedups
-    
+
     # prompt
     OS_VERSION=`cat /etc/redhat-release`
     #export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
     export PS1="\[\e]0;\w\a\]\n\[\e[33m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
-    
+
     # ls command color
     export LS_COLORS="no=00:fi=00:di=34:ow=34;40:ln=35:pi=30;44:so=35;44:do=35;44:"\
     "bd=33;44:cd=37;44:or=05;37;41:mi=05;37;41:ex=01;31:*.cmd=01;31:*.exe=01;31:"\
