@@ -28,14 +28,25 @@ if dein#load_state(expand('~/.vim/dein'))
     call dein#add('h1mesuke/vim-alignta')
     "call dein#add('kannokanno/previm')
     call dein#add('embear/vim-localvimrc')
+
+    " node.js
+    call dein#add('heavenshell/vim-jsdoc')
+    "call dein#add('moll/vim-node')
     call dein#add('pangloss/vim-javascript')
+    "call dein#add('pmsorhaindo/syntastic-local-eslint.vim')
+
+    " auto set paste at paste
+    call dein#add('ConradIrwin/vim-bracketed-paste')
+
     call dein#end()
 
     call dein#save_state()
 endif
-filetype plugin on           " ファイルタイプ別設定実行
+filetype plugin indent on           " ファイルタイプ別設定実行
+" ファイルタイプ別にindentのon/offをしたいが，うまくいかない
 " invalid filetype indent at rst file
-autocmd BufNewFile,BufRead *.rst filetype indent off
+"autocmd BufNewFile,BufRead *.rst filetype indent off
+"autocmd BufNewFile,BufRead *.js filetype indent on
 syntax enable                       " 構文ハイライト
 
 set nobackup	                    " バックアップ作らない
@@ -51,7 +62,7 @@ set fencs=utf-8,euc-jp,sjis " 左優先で入力の文字コード判定後fenc�
 set backspace=indent,eol,start      " BSで削除可能に
 " unset because cursor move is heavy
 "set cursorline                      " 現在の行を強調表示
-set virtualedit=onemore             " 行末+1カーソル移動可能に
+"set virtualedit=onemore             " 行末+1カーソル移動可能に
 set showmatch                       " 対応括弧を強調表示
 set laststatus=2                    " ステータスラインを常に表示
 set wildmode=list:longest           " コマンドラインの補完
@@ -97,12 +108,20 @@ nnoremap <C-w><C-h> :tabmove -1<CR>
 nnoremap <C-w><BS> :tabmove -1<CR>
 nnoremap <C-w><C-l> :tabmove +1<CR>
 " ESC連打でハイライト解除
-nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+noremap <Esc><Esc> :nohlsearch<CR><Esc>
 " NerdTreeショートカット
 nnoremap <silent><C-n> :NERDTreeToggle<CR>
 " clang-formatでインデント実行
 vmap f= <Plug>(operator-clang-format)
-
+" cursorline
+function! SwitchCursorLine()
+    if &cursorline
+        set nocursorline
+    else
+        set cursorline
+    endif
+endfunction
+nnoremap <C-q> :call SwitchCursorLine()<CR>
 
 " clang-format setting
 " google style with indent width 4
@@ -146,9 +165,6 @@ if _curfile == 'Makefile'
   set noexpandtab
 endif
 
-" Turn off paste mode when leaving insert
-autocmd InsertLeave * set nopaste
-
 " vim-syntastic settings
 let g:syntastic_cpp_compiler="gcc"
 let g:syntastic_cpp_compiler_options=" -std=c++11" 
@@ -177,3 +193,29 @@ set foldlevel=100
 "" enable backspace key to delete CR
 let g:riv_ignored_imaps="<BS>"
 
+" Node.js
+" jsdoc
+noremap <C-j> :JsDoc<CR>
+" eslint
+" ref. https://github.com/scrooloose/syntastic#settings
+let g:syntastic_javascript_checkers = ['eslint']
+" エラー行に sign を表示
+let g:syntastic_enable_signs = 1
+" location list を常に更新
+let g:syntastic_always_populate_loc_list = 0
+" location list を常に表示
+let g:syntastic_auto_loc_list = 0
+" ファイルを開いた時にチェックを実行する
+let g:syntastic_check_on_open = 0
+" :wq で終了する時もチェックする
+let g:syntastic_check_on_wq = 0
+
+" cursor
+"" reverse color
+highlight CursorLine term=reverse cterm=reverse
+let &t_ti.="\e[1 q"     " start vim?
+let &t_SI.="\e[5 q"     " start insert mode
+let &t_EI.="\e[1 q"     " end insert mode
+let &t_te.="\e[5 q"     " end vim?
+
+set timeout timeoutlen=1000 ttimeoutlen=50
