@@ -1,4 +1,64 @@
-# .bashrc
+########################################
+# common settings
+########################################
+
+# the number of reserving history 
+HISTSIZE=500000
+export HISTCONTROL=erasedups
+
+# vim bind
+set -o vi
+# vim alias
+alias vi='vim'
+# ls alias
+alias ls='ls --color=auto'
+alias ll='ls -lA'
+alias la='ls -A'
+alias sl='ls'
+
+# git command alias
+alias g='git'
+# git diff output files
+function makegitdiff() {
+    if [ $# -ne 3 ]; then
+        echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
+        return
+    fi
+    local af=$1
+    local bf=$2
+    local outDir=$3
+    if [ -e ${outDir} ]; then
+        echo "ERROR: ${outDir} is already existed"
+        return 
+    else
+        mkdir ${outDir}
+        git archive --format=tar --prefix=after/ ${af} `git diff --diff-filter=d --name-only ${bf} ${af}` -o ${outDir}/after.tar
+        git archive --format=tar --prefix=before/ ${bf} `git diff --diff-filter=d --name-only ${af} ${bf}` -o ${outDir}/before.tar
+        tar -xf ${outDir}/after.tar -C ${outDir}
+        tar -xf ${outDir}/before.tar -C ${outDir}
+        rm ${outDir}/after.tar
+        rm ${outDir}/before.tar
+    fi
+}
+# show all diff between local and tracking branch
+function gdab() {
+    (
+    set -f
+    for b in `git branch`; do
+        if [ ${b} != '*' ]; then
+            echo "############################################################"
+            echo "# git diff ${b} origin/${b}"
+            echo "############################################################"
+            git diff ${b} origin/${b}
+        fi
+    done
+    )
+}
+
+export NVM_DIR="$HOME/.config"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 
 ################################################################################
 # for MSYS2 on Windows
@@ -6,57 +66,8 @@
 if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # history front trace
     [ -t 0 ] && stty stop undef
-    ########################################
-    # common settings
-    ########################################
-    # the number of reserving history 
-    HISTSIZE=50000
-    # vim bind
-    set -o vi
-    # vim alias
-    alias vi='vim'
-    # ls alias
-    alias ls='ls --color=auto'
-    alias ll='ls -lA'
-    alias la='ls -A'
-    alias sl='ls'
-    # git command alias
-    alias g='git'
-    # git diff output files
-    function makegitdiff() {
-        if [ $# -ne 3 ]; then
-            echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
-            return
-        fi
-        local af=$1
-        local bf=$2
-        local outDir=$3
-        if [ -e ${outDir} ]; then
-            echo "ERROR: ${outDir} is already existed"
-            return 
-        else
-            mkdir ${outDir}
-            git archive --format=tar --prefix=after/ ${af} `git diff --diff-filter=d --name-only ${bf} ${af}` -o ${outDir}/after.tar
-            git archive --format=tar --prefix=before/ ${bf} `git diff --diff-filter=d --name-only ${af} ${bf}` -o ${outDir}/before.tar
-            tar -xf ${outDir}/after.tar -C ${outDir}
-            tar -xf ${outDir}/before.tar -C ${outDir}
-            rm ${outDir}/after.tar
-            rm ${outDir}/before.tar
-        fi
-    }
-    function gdab() {
-        (
-        set -f
-        for b in `git branch`; do
-            if [ ${b} != '*' ]; then
-                echo "############################################################"
-                echo "# git diff ${b} origin/${b}"
-                echo "############################################################"
-                git diff ${b} origin/${b}
-            fi
-        done
-        )
-    }
+    [ -t 0 ] && stty start undef
+
     # git completion
     source /usr/share/git/completion/git-completion.bash
     __git_complete g __git_main
@@ -69,7 +80,7 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # set ls color Solarized
     eval `dircolors /etc/dircolors-solarized/dircolors.ansi-dark`
     # prompt custom
-    export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\[\e[0m\]# "
+    export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\[\e[0m\]# '
 
     ########################################
     # system
@@ -96,118 +107,11 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # chrome alias
     alias chrome="/c/Program\ Files\ \(x86\)/Google/Chrome/Application/chrome.exe"
 
-################################################################################
-# for Mac
-################################################################################
-elif [ "$(uname)" == 'Darwin' ]; then
-    ########################################
-    # common settings
-    ########################################
-    # the number of reserving history 
-    HISTSIZE=500000
-    # vim bind
-    set -o vi
-    # vim alias
-    alias vi='vim'
-    # ls alias
-    alias ls='ls --color=auto'
-    alias ll='ls -lA'
-    alias la='ls -A'
-    alias sl='ls'
-    # git command alias
-    alias g='git'
-    # git diff output files
-    function makegitdiff() {
-        if [ $# -ne 3 ]; then
-            echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
-            return
-        fi
-        local af=$1
-        local bf=$2
-        local outDir=$3
-        if [ -e ${outDir} ]; then
-            echo "ERROR: ${outDir} is already existed"
-            return 
-        else
-            mkdir ${outDir}
-            git archive --format=tar --prefix=after/ ${af} `git diff --diff-filter=d --name-only ${bf} ${af}` -o ${outDir}/after.tar
-            git archive --format=tar --prefix=before/ ${bf} `git diff --diff-filter=d --name-only ${af} ${bf}` -o ${outDir}/before.tar
-            tar -xf ${outDir}/after.tar -C ${outDir}
-            tar -xf ${outDir}/before.tar -C ${outDir}
-            rm ${outDir}/after.tar
-            rm ${outDir}/before.tar
-        fi
-    }
-    function gdab() {
-        (
-        set -f
-        for b in `git branch`; do
-            if [ ${b} != '*' ]; then
-                echo "############################################################"
-                echo "# git diff ${b} origin/${b}"
-                echo "############################################################"
-                git diff ${b} origin/${b}
-            fi
-        done
-        )
-    }
-
 
 ################################################################################
 # for CentOS7
 ################################################################################
-else
-    ########################################
-    # common settings
-    ########################################
-    # the number of reserving history 
-    HISTSIZE=500000
-    # vim bind
-    set -o vi
-    # vim alias
-    alias vi='vim'
-    # ls alias
-    alias ls='ls --color=auto'
-    alias ll='ls -lA'
-    alias la='ls -A'
-    alias sl='ls'
-    # git command alias
-    alias g='git'
-    # git diff output files
-    function makegitdiff() {
-        if [ $# -ne 3 ]; then
-            echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
-            return
-        fi
-        local af=$1
-        local bf=$2
-        local outDir=$3
-        if [ -e ${outDir} ]; then
-            echo "ERROR: ${outDir} is already existed"
-            return 
-        else
-            mkdir ${outDir}
-            git archive --format=tar --prefix=after/ ${af} `git diff --diff-filter=d --name-only ${bf} ${af}` -o ${outDir}/after.tar
-            git archive --format=tar --prefix=before/ ${bf} `git diff --diff-filter=d --name-only ${af} ${bf}` -o ${outDir}/before.tar
-            tar -xf ${outDir}/after.tar -C ${outDir}
-            tar -xf ${outDir}/before.tar -C ${outDir}
-            rm ${outDir}/after.tar
-            rm ${outDir}/before.tar
-        fi
-    }
-    function gdab() {
-        (
-        set -f
-        for b in `git branch`; do
-            if [ ${b} != '*' ]; then
-                echo "############################################################"
-                echo "# git diff ${b} origin/${b}"
-                echo "############################################################"
-                git diff ${b} origin/${b}
-            fi
-        done
-        )
-    }
+elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     # git completion
     source /usr/local/share/git-completion/git-completion.bash
     # Source global definitions
@@ -228,9 +132,7 @@ else
 
     # history front trace
     [ -t 0 ] && stty stop undef
-
-    HISTSIZE=50000
-    export HISTCONTROL=erasedups
+    [ -t 0 ] && stty start undef
 
     # prompt
     OS_VERSION=`cat /etc/redhat-release`
@@ -273,9 +175,12 @@ else
     export LS_COLORS="${LS_COLORS}33:*.OFF=01;33:*.dist=01;33:*.DIST=01;33:*.orig=01;33:*.ORIG=01;33:*.swp=01;"
     export LS_COLORS="${LS_COLORS}33:*.swo=01;33:*,v=01;33:*.gpg=34:*.gpg=34:*.pgp=34:*.asc=34:*.3des=34:"
     export LS_COLORS="${LS_COLORS}*.aes=34:*.enc=34:*.sqlite=34:"
+
+
+################################################################################
+# for Mac
+################################################################################
+elif [ "$(uname)" == 'Darwin' ]; then
+    :
 fi
 
-
-export NVM_DIR="$HOME/.config"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
