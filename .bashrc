@@ -79,6 +79,7 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     source /etc/mintty-colors-solarized/sol.dark
     # set ls color Solarized
     eval `dircolors /etc/dircolors-solarized/dircolors.ansi-dark`
+    echo -ne '\eP\e]12;#EEE8D5\a'  # white cursor
     # prompt custom
     export PS1='\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$MSYSTEM\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\[\e[0m\]# '
 
