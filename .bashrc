@@ -21,23 +21,23 @@ alias g='git'
 # git diff output files
 function makegitdiff() {
     if [ $# -ne 3 ]; then
-        echo "[ERROR] usage: makegitdiff <afterCommit> <beforeCommit> <outputDir>"
+        echo "[ERROR] usage: makegitdiff <beforeCommit> <afterCommit> <outputDir>"
         return
     fi
-    local af=$1
-    local bf=$2
+    local bf=$1
+    local af=$2
     local outDir=$3
     if [ -e ${outDir} ]; then
         echo "ERROR: ${outDir} is already existed"
         return 
     else
         mkdir ${outDir}
-        git archive --format=tar --prefix=after/ ${af} `git diff --diff-filter=d --name-only ${bf} ${af}` -o ${outDir}/after.tar
         git archive --format=tar --prefix=before/ ${bf} `git diff --diff-filter=d --name-only ${af} ${bf}` -o ${outDir}/before.tar
-        tar -xf ${outDir}/after.tar -C ${outDir}
+        git archive --format=tar --prefix=after/ ${af} `git diff --diff-filter=d --name-only ${bf} ${af}` -o ${outDir}/after.tar
         tar -xf ${outDir}/before.tar -C ${outDir}
-        rm ${outDir}/after.tar
+        tar -xf ${outDir}/after.tar -C ${outDir}
         rm ${outDir}/before.tar
+        rm ${outDir}/after.tar
     fi
 }
 # show all diff between local and tracking branch
@@ -113,15 +113,15 @@ if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
 # for CentOS7
 ################################################################################
 elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
-    # git completion
-    source /usr/local/share/git-completion/git-completion.bash
     # Source global definitions
     if [ -f /etc/bashrc ]; then
     	. /etc/bashrc
     fi
 
-    # Uncomment the following line if you don't like systemctl's auto-paging feature:
-    # export SYSTEMD_PAGER=
+    # git completion
+    if [ -f /usr/local/share/git-completion/git-completion.bash ]; then
+        source /usr/local/share/git-completion/git-completion.bash
+    fi
 
     # User specific aliases and functions
     export XDG_CONFIG_HOME="$HOME/.config"

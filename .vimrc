@@ -222,9 +222,9 @@ let g:syntastic_check_on_wq = 0
 " cursor
 "" reverse color
 highlight CursorLine term=reverse cterm=reverse
-let &t_ti.="\e[1 q"     " start vim?
-let &t_SI.="\e[5 q"     " start insert mode
-let &t_EI.="\e[1 q"     " end insert mode
-let &t_te.="\e[5 q"     " end vim?
+let &t_ti.="\e[2 q"     " unflashing bar cursor on booted vim
+let &t_SI.="\e[6 q"     " unflashing block cursor on started insert mode
+let &t_EI.="\e[2 q"     " unflashing bar cursor on ended insert mode
+let &t_te.="\e[6 q"     " unflashing block cursor on killed vim
 
 set timeout timeoutlen=1000 ttimeoutlen=50
