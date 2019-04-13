@@ -1,0 +1,23 @@
+[user]
+    name = knock
+    email = dff9th@gmail.com
+[alias]
+    a = add
+    A = add -A
+    b = branch
+    ba = branch -a
+    c = config
+    ch = checkout
+    cm = commit
+    d = diff
+    dn = diff --name-only
+    f = fetch
+    fa = fetch --all
+    l = log
+    lg = log --graph
+    ll = log --oneline
+    m = merge
+    s = status
+[core]
+    editor = vim -c \"set fenc=utf-8\"
+
