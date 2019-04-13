@@ -123,6 +123,11 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         source /usr/local/share/git-completion/git-completion.bash
     fi
 
+    # pyenv
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+
     # User specific aliases and functions
     export XDG_CONFIG_HOME="$HOME/.config"
     # expand path variable with tail '/' and TAB
@@ -176,7 +181,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export LS_COLORS="${LS_COLORS}33:*.OFF=01;33:*.dist=01;33:*.DIST=01;33:*.orig=01;33:*.ORIG=01;33:*.swp=01;"
     export LS_COLORS="${LS_COLORS}33:*.swo=01;33:*,v=01;33:*.gpg=34:*.gpg=34:*.pgp=34:*.asc=34:*.3des=34:"
     export LS_COLORS="${LS_COLORS}*.aes=34:*.enc=34:*.sqlite=34:"
-
 
 ################################################################################
 # for Mac
