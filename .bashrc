@@ -10,11 +10,6 @@ export HISTCONTROL=erasedups
 set -o vi
 # vim alias
 alias vi='vim'
-# ls alias
-alias ls='ls --color=auto'
-alias ll='ls -lA'
-alias la='ls -A'
-alias sl='ls'
 
 # git command alias
 alias g='git'
@@ -61,12 +56,28 @@ export NVM_DIR="$HOME/.config"
 
 
 ################################################################################
+# for Mac
+################################################################################
+if [ "$(uname)" == 'Darwin' ]; then
+    # ls alias
+    alias ls='ls -G'
+    alias ll='ls -lA'
+    alias la='ls -A'
+    alias sl='ls'
+
+################################################################################
 # for MSYS2 on Windows
 ################################################################################
-if [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
+elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # history front trace
     [ -t 0 ] && stty stop undef
     [ -t 0 ] && stty start undef
+
+    # ls alias
+    alias ls='ls --color=auto'
+    alias ll='ls -lA'
+    alias la='ls -A'
+    alias sl='ls'
 
     # git completion
     source /usr/share/git/completion/git-completion.bash
@@ -117,6 +128,12 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     if [ -f /etc/bashrc ]; then
     	. /etc/bashrc
     fi
+
+    # ls alias
+    alias ls='ls --color=auto'
+    alias ll='ls -lA'
+    alias la='ls -A'
+    alias sl='ls'
 
     # git completion
     if [ -f /usr/local/share/git-completion/git-completion.bash ]; then
@@ -182,10 +199,5 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export LS_COLORS="${LS_COLORS}33:*.swo=01;33:*,v=01;33:*.gpg=34:*.gpg=34:*.pgp=34:*.asc=34:*.3des=34:"
     export LS_COLORS="${LS_COLORS}*.aes=34:*.enc=34:*.sqlite=34:"
 
-################################################################################
-# for Mac
-################################################################################
-elif [ "$(uname)" == 'Darwin' ]; then
-    :
 fi
 
