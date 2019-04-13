@@ -228,3 +228,6 @@ let &t_EI.="\e[2 q"     " unflashing bar cursor on ended insert mode
 let &t_te.="\e[6 q"     " unflashing block cursor on killed vim
 
 set timeout timeoutlen=1000 ttimeoutlen=50
+
+" python
+let g:syntastic_python_checkers = ['pylint']
