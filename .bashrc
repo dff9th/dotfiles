@@ -145,6 +145,9 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
 
+    # for sqlite3 in django
+    export LD_LIBRARY_PATH="/usr/local/lib"
+
     # User specific aliases and functions
     export XDG_CONFIG_HOME="$HOME/.config"
     # expand path variable with tail '/' and TAB

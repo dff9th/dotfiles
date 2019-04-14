@@ -231,3 +231,9 @@ set timeout timeoutlen=1000 ttimeoutlen=50
 
 " python
 let g:syntastic_python_checkers = ['pylint']
+
+" change indent width by the filetype
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
