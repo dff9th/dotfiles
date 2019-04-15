@@ -44,6 +44,9 @@ if dein#load_state(expand('~/.vim/dein'))
     " auto set paste at paste
     call dein#add('ConradIrwin/vim-bracketed-paste')
 
+    "python
+    call dein#add('Vimjas/vim-python-pep8-indent')
+
     call dein#end()
 
     call dein#save_state()
