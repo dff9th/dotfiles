@@ -104,7 +104,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     # etc
     ########################################
     # display is disturbed when we set xterm-256color, so do following
-    alias tmux='tmux -2'
+    #alias tmux='tmux -2'
 
     # pandoc alias
     alias pandoc="/c/Users/clouduser/AppData/Local/Pandoc/pandoc.exe"
