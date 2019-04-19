@@ -129,6 +129,13 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     	. /etc/bashrc
     fi
 
+    # User specific aliases and functions
+    export XDG_CONFIG_HOME="$HOME/.config"
+
+    # nvim
+    alias nvi=nvim
+    export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+
     # ls alias
     alias ls='ls --color=auto'
     alias ll='ls -lA'
@@ -148,8 +155,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     # for sqlite3 in django
     export LD_LIBRARY_PATH="/usr/local/lib"
 
-    # User specific aliases and functions
-    export XDG_CONFIG_HOME="$HOME/.config"
     # expand path variable with tail '/' and TAB
     shopt -s direxpand
 
