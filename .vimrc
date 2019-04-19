@@ -44,6 +44,9 @@ if dein#load_state(expand('~/.vim/dein'))
     " auto set paste at paste
     call dein#add('ConradIrwin/vim-bracketed-paste')
 
+    "python
+    call dein#add('Vimjas/vim-python-pep8-indent')
+
     call dein#end()
 
     call dein#save_state()
@@ -228,3 +231,12 @@ let &t_EI.="\e[2 q"     " unflashing bar cursor on ended insert mode
 let &t_te.="\e[6 q"     " unflashing block cursor on killed vim
 
 set timeout timeoutlen=1000 ttimeoutlen=50
+
+" python
+let g:syntastic_python_checkers = ['pylint']
+
+" change indent width by the filetype
+augroup fileTypeIndent
+    autocmd!
+    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+augroup END
