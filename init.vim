@@ -1,11 +1,11 @@
 if &compatible
     set nocompatible
 endif
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim
-if dein#load_state(expand('~/.vim/dein'))
-    call dein#begin(expand('~/.vim/dein'))
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
+if dein#load_state(expand('~/.cache/dein'))
+    call dein#begin(expand('~/.cache/dein'))
 
-    call dein#add(expand('~/.vim/dein/repos/github.com/Shougo/dein.vim'))
+    call dein#add(expand('~/.cache/dein/repos/github.com/Shougo/dein.vim'))
     "call dein#add('Rykka/riv.vim')
     "call dein#add('Shougo/deoplete.nvim')
     "call dein#add('kannokanno/previm')
@@ -61,7 +61,7 @@ syntax enable                       " 構文ハイライト
 set nobackup	                    " バックアップ作らない
 set noswapfile	                    " swpファイル作らない
 set undofile                        " vim終了後もundoできるように
-set undodir=~/.vim/undodir          " vim終了後もundoできるように
+set undodir=~/.cache/undodir        " vim終了後もundoできるように
 set t_Co=256                        " 256色カラー表示
 set number                          " 行番号表示
 set encoding=utf-8                  " vim上のバッファで用いる文字コード
@@ -97,7 +97,7 @@ colorscheme molokai
 set vb t_vb=                        " ビープ音オフ
 
 " 改行時の自動コメント挿入の無効化方法
-" ~/.vim/after/plugin/common.vimに以下を記載
+" ~/.cache/after/plugin/common.vimに以下を記載
 " autocmd FileType * setlocal formatoptions-=r
 " autocmd FileType * setlocal formatoptions-=o
 
