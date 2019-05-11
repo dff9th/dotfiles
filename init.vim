@@ -96,8 +96,8 @@ set vb t_vb=                        " ビープ音オフ
 
 " 改行時の自動コメント挿入の無効化方法
 " ~/.cache/after/plugin/common.vimに以下を記載
-" autocmd FileType * setlocal formatoptions-=r
-" autocmd FileType * setlocal formatoptions-=o
+autocmd FileType * setlocal formatoptions-=r
+autocmd FileType * setlocal formatoptions-=o
 
 " move 
 nnoremap j gj
