@@ -1,5 +1,5 @@
 BoldAsFont=-1
-Term=xterm
+Term=xterm-256color
 CtrlShiftShortcuts=yes
 Transparency=high
 Font=Ricty Diminished
