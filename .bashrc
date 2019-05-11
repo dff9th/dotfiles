@@ -13,8 +13,7 @@ export HISTCONTROL=erasedups
 set -o vi
 
 # vim/nvim alias
-which 'nvim' > /dev/null 2>&1 || result=$?
-if [ $((result==0)) ]; then
+if [ -e '/usr/local/bin/nvim' ]; then
     # exist nvim
     alias vi="nvim"
     alias nvi="nvim"
@@ -31,7 +30,7 @@ alias g='git'
 
 # git completion
 GIT_COMP='/usr/local/share/git-completion/git-completion.bash'
-if [ -s $GIT_COMP ]; then
+if [ -e $GIT_COMP ]; then
     source $GIT_COMP
     __git_complete g __git_main
 fi
