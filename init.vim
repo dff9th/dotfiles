@@ -87,10 +87,8 @@ set clipboard+=unnamed
 set ambiwidth=double                " draw multibyte character with 2-wide
 
 " color settings
-"" comment color
-autocmd ColorScheme * highlight Comment ctermfg=28 guifg=#008800
-"" colorring gray after 80 column
-execute "set colorcolumn=" . join(range(81, 9999), ',')
+autocmd ColorScheme * highlight Comment ctermfg=28  guifg=#008800
+autocmd ColorScheme * highlight LineNr  ctermfg=136 guifg=#d9a62e
 colorscheme molokai
 
 "set iskeyword-=_                   " 単語扱いの文字集合修正
