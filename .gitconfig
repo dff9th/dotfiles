@@ -19,5 +19,5 @@
     m = merge
     s = status
 [core]
-    editor = vim -c \"set fenc=utf-8\"
+    editor = $GIT_EDITOR -c \"set fenc=utf-8\"
 

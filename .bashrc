@@ -19,9 +19,11 @@ if [ $((result==0)) ]; then
     alias vi="nvim"
     alias nvi="nvim"
     export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+    export GIT_EDITOR='nvim'
 else
     # not exist nvim
     alias vi='vim'
+    export GIT_EDITOR='vim'
 fi
 
 # git command alias
