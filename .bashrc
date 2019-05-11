@@ -133,8 +133,12 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export XDG_CONFIG_HOME="$HOME/.config"
 
     # nvim
-    alias nvi=nvim
-    export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+    which 'nvim' > /dev/null 2>&1 || result=$?
+    if [ $((result==0)) ]; then
+        alias vi="nvim"
+        alias nvi="nvim"
+        export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+    fi
 
     # ls alias
     alias ls='ls --color=auto'
