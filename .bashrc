@@ -2,17 +2,38 @@
 # common settings
 ########################################
 
+# User specific aliases and functions
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # the number of reserving history 
 HISTSIZE=500000
 export HISTCONTROL=erasedups
 
 # vim bind
 set -o vi
-# vim alias
-alias vi='vim'
+
+# vim/nvim alias
+which 'nvim' > /dev/null 2>&1 || result=$?
+if [ $((result==0)) ]; then
+    # exist nvim
+    alias vi="nvim"
+    alias nvi="nvim"
+    export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+else
+    # not exist nvim
+    alias vi='vim'
+fi
 
 # git command alias
 alias g='git'
+
+# git completion
+GIT_COMP='/usr/local/share/git-completion/git-completion.bash'
+if [ -s $GIT_COMP ]; then
+    source $GIT_COMP
+    __git_complete g __git_main
+fi
+
 # git diff output files
 function makegitdiff() {
     if [ $# -ne 3 ]; then
@@ -35,6 +56,7 @@ function makegitdiff() {
         rm ${outDir}/after.tar
     fi
 }
+
 # show all diff between local and tracking branch
 function gdab() {
     (
@@ -79,10 +101,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
     alias la='ls -A'
     alias sl='ls'
 
-    # git completion
-    source /usr/share/git/completion/git-completion.bash
-    __git_complete g __git_main
-
     ########################################
     # graphic
     ########################################
@@ -126,18 +144,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
 elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     # Source global definitions
     if [ -f /etc/bashrc ]; then
-    	. /etc/bashrc
-    fi
-
-    # User specific aliases and functions
-    export XDG_CONFIG_HOME="$HOME/.config"
-
-    # nvim
-    which 'nvim' > /dev/null 2>&1 || result=$?
-    if [ $((result==0)) ]; then
-        alias vi="nvim"
-        alias nvi="nvim"
-        export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+    	source /etc/bashrc
     fi
 
     # ls alias
@@ -145,11 +152,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     alias ll='ls -lA'
     alias la='ls -A'
     alias sl='ls'
-
-    # git completion
-    if [ -f /usr/local/share/git-completion/git-completion.bash ]; then
-        source /usr/local/share/git-completion/git-completion.bash
-    fi
 
     # pyenv
     export PYENV_ROOT="$HOME/.pyenv"
