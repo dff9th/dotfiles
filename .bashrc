@@ -89,6 +89,13 @@ if [ "$(uname)" == 'Darwin' ]; then
     alias la='ls -A'
     alias sl='ls'
 
+    # git completion
+    GIT_COMP='/usr/local//etc/bash_completion.d/git-completion.bash'
+    if [ -e $GIT_COMP ]; then
+        source $GIT_COMP
+        __git_complete g __git_main
+    fi
+
 ################################################################################
 # for MSYS2 on Windows
 ################################################################################
