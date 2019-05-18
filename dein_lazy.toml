@@ -1,0 +1,83 @@
+# Toml
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = ['toml']
+
+# Preview markdown document with html 
+[[plugins]]
+repo = 'previm/previm'
+on_ft = ['md']
+hook_add = '''
+    nnoremap <silent> <C-p> :PrevimOpen<CR>
+'''
+
+# Markdown
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+on_ft = ['md']
+hook_add = '''
+    let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_new_list_item_indent = 0
+'''
+
+[[plugins]]
+repo = 'aklt/plantuml-syntax'
+on_ft = ['uml']
+
+[[plugins]]
+repo = 'embear/vim-localvimrc'
+hook_add = '''
+    let g:localvimrc_sandbox = 0
+    let g:localvimrc_ask = 0
+'''
+
+[[plugins]]
+repo = 'deoplete-plugins/deoplete-clang'
+on_ft = ['c', 'cpp']
+on_i = 1
+hook_add = '''
+    let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neoinclude.vim'
+on_ft = ['c', 'cpp']
+on_i = 1
+depends = ['deoplete.nvim']
+
+# clang-format
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+on_ft = ['c', 'cpp']
+on_map = ['<Plug>(operator-clang-format)']
+depends = ['kana/vim-operator-user']
+# Do indent by clang-format
+# Google style with indent width 4
+hook_add = '''
+    vmap f= <Plug>(operator-clang-format)
+    let g:clang_format#style_options = {
+        \ "BasedOnStyle" : 'Google',
+        \ "TabWidth" : 4,
+        \ "IndentWidth" : 4,
+        \ "UseTab" : 'Never',
+        \ "AccessModifierOffset" : -4,
+        \ "Standard" : "C++11",
+    \ }
+'''
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft = ['py']
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+on_ft = ['js']
+
+# Add javascript comment with JsDoc
+[[plugins]]
+repo = 'heavenshell/vim-jsdoc'
+on_ft = ['js']
+hook_add = '''
+    noremap <C-j> :JsDoc<CR>
+'''
+

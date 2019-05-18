@@ -139,10 +139,10 @@ disable=print-statement,
         deprecated-sys-function,
         exception-escape,
         comprehension-escape,
-        # my add
-        trailing-newlines,
-        trailing-whitespace,
+        # Add
         missing-docstring
+        #trailing-newlines,
+        #trailing-whitespace,
 
 
 # Enable the message, report, category or checker with the given id(s). You can

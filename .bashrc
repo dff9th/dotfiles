@@ -4,6 +4,7 @@
 
 # User specific aliases and functions
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # the number of reserving history 
 HISTSIZE=500000
@@ -17,7 +18,7 @@ if [ -e '/usr/local/bin/nvim' ]; then
     # exist nvim
     alias vi="nvim"
     alias nvi="nvim"
-    export NVIMRC="${XDG_CONFIG_HOME}/nvim/init.vim"
+    export NVIM_HOME="${XDG_CONFIG_HOME}/nvim"
     export GIT_EDITOR='nvim'
 else
     # not exist nvim
@@ -158,9 +159,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
-
-    # for sqlite3 in django
-    export LD_LIBRARY_PATH="/usr/local/lib"
 
     # expand path variable with tail '/' and TAB
     shopt -s direxpand

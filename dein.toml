@@ -1,0 +1,73 @@
+[[plugins]]
+repo = 'Shougo/unite.vim'
+on_cmd = ['Unite']
+
+[[plugins]]
+repo = 'dff9th/nerdtree'
+on_cmd = ['NERDTreeToggle']
+hook_add = '''
+    nnoremap <silent><C-n> :NERDTreeToggle<CR>
+'''
+
+# Draw filename with relative path
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+    let g:lightline = {
+        \ 'component_function': {
+        \   'filename': 'LightlineFilename',
+        \ }
+    \ }
+    function! LightlineFilename()
+        let root = fnamemodify(get(b:, 'git_dir'), ':h')
+        let path = expand('%:p')
+        if path[:len(root)-1] ==# root
+        return path[len(root)+1:]
+        endif
+        return expand('%')
+    endfunction
+'''
+
+# Align lines by the word position
+[[plugins]]
+repo = 'h1mesuke/vim-alignta'
+on_cmd = ['Alignta']
+hook_add = '''
+    vnoremap \| :Alignta \|<CR>
+    vnoremap // :Alignta <- //<CR>
+    vnoremap { :Alignta {<CR>
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+on_i = 1
+
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+    let g:ale_lint_on_text_changed = 'never'
+    let g:ale_lint_on_enter = 0
+    let g:ale_linters = {
+        \   'c' : ['gcc'],
+        \   'cpp' : ['gcc'],
+        \   'python': ['pylint'],
+        \   'javascript': ['eslint']
+    \}
+    let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+'''
+
+# Auto set paste at paste
+[[plugins]]
+repo = 'ConradIrwin/vim-bracketed-paste'
+on_i = 1
+
+[[plugins]]
+repo = 'tomasr/molokai'
+hook_add = '''
+    autocmd ColorScheme * highlight Comment ctermfg=28  guifg=#008800
+    autocmd ColorScheme * highlight LineNr  ctermfg=136 guifg=#d9a62e
+    colorscheme molokai
+'''
+
+[[plugins]]
+repo = 'kana/vim-operator-user'

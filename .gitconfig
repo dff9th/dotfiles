@@ -8,6 +8,7 @@
     ba = branch -a
     c = config
     ch = checkout
+    cl = clone
     cm = commit
     d = diff
     dn = diff --name-only
