@@ -1,13 +1,13 @@
 " dein
 set runtimepath+=$XDG_CACHE_HOME/dein/repos/github.com/Shougo/dein.vim
-if dein#load_state($XDG_CONFIG_HOME . '/nvim/dein')
-    let g:dein#cache_directory = $XDG_CACHE_HOME . '/dein'
-    let s:toml_dir  = $XDG_CONFIG_HOME . '/nvim/dein/toml' 
-    let s:toml      = s:toml_dir . '/dein.toml'
-    let s:lazy_toml = s:toml_dir . '/dein_lazy.toml'
-    call dein#begin($XDG_CONFIG_HOME . '/nvim/dein')
+if dein#load_state($XDG_CACHE_HOME . '/dein')
+    call dein#begin($XDG_CACHE_HOME . '/dein')
+
+    let s:toml      = $XDG_CONFIG_HOME . '/nvim/dein.toml'
+    let s:lazy_toml = $XDG_CONFIG_HOME . '/nvim/dein_lazy.toml'
     call dein#load_toml(s:toml,      {'lazy': 0})
     call dein#load_toml(s:lazy_toml, {'lazy': 1})
+
     call dein#end()
     call dein#save_state()
 endif
