@@ -163,9 +163,10 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     alias sl='ls'
 
     # pyenv
-    export PYENV_ROOT="$HOME/.pyenv"
+    export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
 
     # expand path variable with tail '/' and TAB
     shopt -s direxpand
