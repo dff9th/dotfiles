@@ -54,6 +54,9 @@ hook_add = '''
         \   'javascript': ['eslint']
     \}
     let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+
+    " Clear linter display
+    nnoremap <C-k> :ALEReset<CR>
 '''
 
 # Auto set paste at paste
