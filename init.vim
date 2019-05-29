@@ -81,12 +81,12 @@ nnoremap <BS> gT
 nnoremap <C-w><BS> :tabmove -1<CR>
 " Remove highlight by repeating ESC
 noremap <Esc><Esc> :nohlsearch<CR><Esc>
-" Reverse cursorline emphasis
-function! SwitchCursorLine()
-    if &cursorline
-        set nocursorline
+" Reverse showing line number
+function! SwitchLineNumber()
+    if &number
+        set nonumber
     else
-        set cursorline
+        set number
     endif
 endfunction
-nnoremap <C-q> :call SwitchCursorLine()<CR>
+nnoremap <C-q> :call SwitchLineNumber()<CR>

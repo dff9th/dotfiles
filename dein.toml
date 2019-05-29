@@ -43,6 +43,14 @@ repo = 'Shougo/deoplete.nvim'
 on_i = 1
 
 [[plugins]]
+repo = 'roxma/nvim-yarp'
+if = "!has('nvim')"
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = "!has('nvim')"
+
+[[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
     let g:ale_lint_on_text_changed = 'never'
@@ -54,6 +62,9 @@ hook_add = '''
         \   'javascript': ['eslint']
     \}
     let g:ale_cpp_gcc_options = '-std=c++17 -Wall'
+
+    " Clear linter display
+    nnoremap <C-k> :ALEReset<CR>
 '''
 
 # Auto set paste at paste
