@@ -10,6 +10,12 @@ export XDG_CACHE_HOME="$HOME/.cache"
 HISTSIZE=500000
 export HISTCONTROL=erasedups
 
+# complete command when sudo option is set
+complete -cf sudo
+
+# pandoc
+alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
+
 # vim bind
 set -o vi
 
