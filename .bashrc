@@ -13,13 +13,13 @@ export HISTCONTROL=erasedups
 # complete command when sudo option is set
 complete -cf sudo
 
-# pandoc
-alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
-
 # vim bind
 set -o vi
 
-# vim/nvim alias
+# pandoc
+alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
+
+# vim/nvim
 if [ -e '/usr/local/bin/nvim' ]; then
     # exist nvim
     alias vi="nvim"
@@ -32,27 +32,27 @@ else
     export GIT_EDITOR='vim'
 fi
 
-# git command alias
+# git
 alias g='git'
 
-# git completion
+## git completion
 GIT_COMP='/usr/local/share/git-completion/git-completion.bash'
 if [ -e $GIT_COMP ]; then
     source $GIT_COMP
     __git_complete g __git_main
 fi
 
-# git diff output files
+## Generate diff files between commit A and B
 function makegitdiff() {
     if [ $# -ne 3 ]; then
-        echo "[ERROR] usage: makegitdiff <beforeCommit> <afterCommit> <outputDir>"
+        echo "[ERROR] Usage: makegitdiff <beforeCommit> <afterCommit> <outputDir>"
         return
     fi
     local bf=$1
     local af=$2
     local outDir=$3
     if [ -e ${outDir} ]; then
-        echo "ERROR: ${outDir} is already existed"
+        echo "[ERROR] ${outDir} is already existed"
         return 
     else
         mkdir ${outDir}
@@ -65,7 +65,7 @@ function makegitdiff() {
     fi
 }
 
-# show all diff between local and tracking branch
+## Show all diff between local and tracking branch
 function gdab() {
     (
     set -f
@@ -83,6 +83,15 @@ function gdab() {
 export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ssh aws instance with its name
+function awsip() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    echo $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.Tags[].Value == "'$1'") | .PublicIpAddress')
+}
 
 
 ################################################################################
