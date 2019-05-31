@@ -144,7 +144,8 @@ disable=print-statement,
         unused-argument,
         trailing-newlines,
         trailing-whitespace,
-        line-too-long
+        line-too-long,
+        bad-whitespace
 
 
 # Enable the message, report, category or checker with the given id(s). You can

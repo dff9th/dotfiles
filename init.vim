@@ -40,7 +40,6 @@ set ambiwidth=double                " Draw multibyte character with 2-wide
 set vb t_vb=                        " Off beep sound
 set foldlevel=100                   " Disable folding
 set timeout timeoutlen=1000 ttimeoutlen=50  " Accelerate mapped key that has common prefix
-set iskeyword-=_                    " Add '_' as separater of word
 
 " Cursor settings
 " Reverse color
