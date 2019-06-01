@@ -50,9 +50,10 @@ let &t_EI.="\e[2 q"     " Unflashing bar cursor on ended insert mode
 let &t_te.="\e[6 q"     " Unflashing block cursor on killed vim
 
 " Filetype settings
-" Desable auto adding comment in a new line
+" Disable auto adding comment in a new line
 autocmd FileType * setlocal formatoptions-=r
 autocmd FileType * setlocal formatoptions-=o
+autocmd FileType * setlocal indentkeys-=0#
 " Change indent width by the filetype
 augroup fileTypeIndent
     autocmd!

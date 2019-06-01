@@ -80,4 +80,3 @@ on_ft = ['js']
 hook_add = '''
     noremap <C-j> :JsDoc<CR>
 '''
-
