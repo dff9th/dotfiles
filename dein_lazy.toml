@@ -65,13 +65,18 @@ hook_add = '''
     \ }
 '''
 
+# Python indent
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
 on_ft = ['py']
 
 [[plugins]]
 repo = 'pangloss/vim-javascript'
+#repo = 'jelera/vim-javascript-syntax'
 on_ft = ['js']
+hook_add = '''
+    let g:javascript_plugin_jsdoc = 1
+'''
 
 # Add javascript comment with JsDoc
 [[plugins]]
