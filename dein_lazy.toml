@@ -70,18 +70,29 @@ hook_add = '''
 repo = 'Vimjas/vim-python-pep8-indent'
 on_ft = ['py']
 
+#[[plugins]]
+#repo = 'jelera/vim-javascript-syntax'
+
 [[plugins]]
 repo = 'pangloss/vim-javascript'
-#repo = 'jelera/vim-javascript-syntax'
-on_ft = ['js']
+on_ft = ['javascript']
 hook_add = '''
     let g:javascript_plugin_jsdoc = 1
 '''
 
+## Javascript ES6 syntax
+#[[plugins]]
+#repo = 'othree/yajs.vim'
+#on_ft = ['javascript']
+#
+#[[plugins]]
+#repo = 'isRuslan/vim-es6'
+#on_ft = ['javascript']
+
 # Add javascript comment with JsDoc
 [[plugins]]
 repo = 'heavenshell/vim-jsdoc'
-on_ft = ['js']
+on_ft = ['javascript']
 hook_add = '''
     noremap <C-j> :JsDoc<CR>
 '''
