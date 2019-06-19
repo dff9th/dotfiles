@@ -69,7 +69,7 @@ hook_add = '''
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 on_i = 1
-hook_source = """
+hook_add = """
     set completeopt-=preview
 """
 
