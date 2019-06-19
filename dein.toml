@@ -61,7 +61,7 @@ on_cmd = ['Alignta']
 hook_add = '''
     vnoremap \| :Alignta \|<CR>
     vnoremap // :Alignta <- //<CR>
-    vnoremap {  :Alignta {<CR>
+    "vnoremap {  :Alignta {<CR>
     vnoremap \= :Alignta =<CR>
     vnoremap \\ :Alignta <- \\<CR>
 '''

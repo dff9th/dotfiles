@@ -9,7 +9,10 @@
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
         "__dirname": true,
-        "setTimeOut": true
+        "setTimeOut": true,
+        "setInterval": true,
+        "setImmediate": true,
+        "process": true
     },
     "parserOptions": {
         "ecmaVersion": 2018
