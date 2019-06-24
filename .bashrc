@@ -26,7 +26,7 @@ if which nvim > /dev/null 2>&1; then
     alias nvi="nvim"
     export NVIM_HOME="${XDG_CONFIG_HOME}/nvim"
     export GIT_EDITOR='nvim'
-else
+elif which vim > /dev/null 2>&1; then
     # not exist nvim
     alias vi='vim'
     export GIT_EDITOR='vim'
@@ -178,7 +178,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     alias sl='ls'
 
     # pyenv
-    if which pyenv > /dev/null 2>&1; then
+    if [ -d $XDG_CACHE_HOME/pyenv ]; then
         export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
         export PATH="$PYENV_ROOT/bin:$PATH"
         eval "$(pyenv init -)"
