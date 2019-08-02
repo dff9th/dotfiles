@@ -20,7 +20,8 @@ set -o vi
 alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
 
 # vim/nvim
-if which nvim > /dev/null 2>&1; then
+NVIM_PATH='/usr/local/bin/nvim'
+if [ -e $NVIM_PATH ]; then
     # exist nvim
     alias vi="nvim"
     alias nvi="nvim"
