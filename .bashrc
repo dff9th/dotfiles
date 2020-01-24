@@ -84,6 +84,9 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+export CARGO_DIR="$XDG_CACHE_HOME/cargo"
+[ -s "$CARGO_DIR/bin" ] && export PATH="$CARGO_DIR/bin:$PATH"
+
 # ssh aws instance with its name
 function awsip() {
     if (($# != 1)); then
