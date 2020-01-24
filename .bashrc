@@ -85,7 +85,7 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# ssh aws instance with its name
+# get aws instance's ip 
 function awsip() {
     if (($# != 1)); then
         echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
@@ -94,6 +94,32 @@ function awsip() {
     echo $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.Tags[].Value == "'$1'") | .PublicIpAddress')
 }
 
+# get aws instance's id
+function awsid() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    echo $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.Tags[].Value == "'$1'") | .InstanceId')
+}
+
+# boot aws instance
+function awsstart() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    aws ec2 start-instances --instance-ids $(awsid $1)
+}
+
+# shutdown aws instance
+function awsstop() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    aws ec2 stop-instances --instance-ids $(awsid $1)
+}
 
 ################################################################################
 # for Mac
