@@ -20,7 +20,8 @@ set -o vi
 alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
 
 # vim/nvim
-if which nvim > /dev/null 2>&1; then
+NVIM_PATH='/usr/local/bin/nvim'
+if [ -e $NVIM_PATH ]; then
     # exist nvim
     alias vi="nvim"
     alias nvi="nvim"
@@ -87,7 +88,7 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 export CARGO_DIR="$XDG_CACHE_HOME/cargo"
 [ -s "$CARGO_DIR/bin" ] && export PATH="$CARGO_DIR/bin:$PATH"
 
-# ssh aws instance with its name
+# get aws instance's ip 
 function awsip() {
     if (($# != 1)); then
         echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
@@ -96,6 +97,32 @@ function awsip() {
     echo $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.Tags[].Value == "'$1'") | .PublicIpAddress')
 }
 
+# get aws instance's id
+function awsid() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    echo $(aws ec2 describe-instances | jq -r '.Reservations[].Instances[] | select(.Tags[].Value == "'$1'") | .InstanceId')
+}
+
+# boot aws instance
+function awsstart() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    aws ec2 start-instances --instance-ids $(awsid $1)
+}
+
+# shutdown aws instance
+function awsstop() {
+    if (($# != 1)); then
+        echo "[ERROR] Usage: $FUNCNAME <instance name>" >&2
+        return
+    fi
+    aws ec2 stop-instances --instance-ids $(awsid $1)
+}
 
 ################################################################################
 # for Mac
