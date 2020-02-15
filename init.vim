@@ -40,6 +40,8 @@ set ambiwidth=double                " Draw multibyte character with 2-wide
 set vb t_vb=                        " Off beep sound
 set foldlevel=100                   " Disable folding
 set timeout timeoutlen=1000 ttimeoutlen=50  " Accelerate mapped key that has common prefix
+set ignorecase                      " Ignore upper/lower case in search
+set smartcase                       " Consider upper/lower case if search word includes upper case
 
 " Cursor settings
 " Reverse color
