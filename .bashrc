@@ -230,7 +230,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     [ -t 0 ] && stty start undef
 
     # prompt
-    OS_VERSION=`cat /etc/redhat-release`
+    OS_VERSION=$(cat /etc/os-release | grep PRETTY_NAME | sed -e 's/^.*PRETTY_NAME="\(.*\)".*$/\1/')
     #export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
     export PS1="\[\e]0;\w\a\]\n\[\e[33m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
 
