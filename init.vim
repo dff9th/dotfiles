@@ -66,6 +66,8 @@ let _curfile=expand("%:r")
 if _curfile == 'Makefile'
   set noexpandtab
 endif
+" html indent
+let g:html_indent_style1 = "inc"
 
 " Mapping
 " Move 
