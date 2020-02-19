@@ -1,0 +1,12 @@
+set smoothscroll
+unmap e
+map d closeTab
+map u lastClosedTab
+map <C-u> scrollPageUp
+map <C-d> scrollPageDown
+map <C-h> previousTab
+map <C-l> nextTab
+map <C-y> scrollUp
+map <C-e> scrollDown
+map <C-S-h> moveTabLeft
+map <C-S-l> moveTabRight

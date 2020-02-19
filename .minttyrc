@@ -1,7 +1,7 @@
 BoldAsFont=-1
 Term=xterm-256color
 CtrlShiftShortcuts=yes
-Transparency=high
+Transparency=medium
 Font=Ricty Diminished
 FontHeight=11
 BellType=0

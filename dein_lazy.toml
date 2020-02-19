@@ -63,6 +63,7 @@ hook_add = '''
         \ "AccessModifierOffset" : -4,
         \ "Standard" : "C++11",
     \ }
+    set cino=g0.5s,h0.5s
 '''
 
 # Python indent
