@@ -17,7 +17,10 @@ complete -cf sudo
 set -o vi
 
 # pandoc
-alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
+GITHUB_CSS="${HOME}/.pandoc/css/github.css"
+if [ -e $GITHUB_CSS ]; then
+    alias pangit="pandoc -f markdown -t html5 -s --self-contained -c ${HOME}/.pandoc/css/github.css"
+fi
 
 # vim/nvim
 NVIM_PATH='/usr/local/bin/nvim'
@@ -33,11 +36,28 @@ elif which vim > /dev/null 2>&1; then
     export GIT_EDITOR='vim'
 fi
 
+# nvm
+export NVM_DIR="$XDG_CACHE_HOME/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# rust
+export CARGO_DIR="$XDG_CACHE_HOME/cargo"
+[ -s "$CARGO_DIR/bin" ] && export PATH="$CARGO_DIR/bin:$PATH"
+
+# pyenv
+if [ -d $XDG_CACHE_HOME/pyenv ]; then
+    export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+fi
+
 # git
 alias g='git'
 
 ## git completion
-GIT_COMP='/usr/local/share/git-completion/git-completion.bash'
+GIT_COMP='/usr/local/share/completion/git-completion.bash'
 if [ -e $GIT_COMP ]; then
     source $GIT_COMP
     __git_complete g __git_main
@@ -80,13 +100,6 @@ function gdab() {
     done
     )
 }
-
-export NVM_DIR="$XDG_CACHE_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-export CARGO_DIR="$XDG_CACHE_HOME/cargo"
-[ -s "$CARGO_DIR/bin" ] && export PATH="$CARGO_DIR/bin:$PATH"
 
 # get aws instance's ip 
 function awsip() {
@@ -133,13 +146,6 @@ if [ "$(uname)" == 'Darwin' ]; then
     alias ll='ls -lA'
     alias la='ls -A'
     alias sl='ls'
-
-    # git completion
-    GIT_COMP='/usr/local//etc/bash_completion.d/git-completion.bash'
-    if [ -e $GIT_COMP ]; then
-        source $GIT_COMP
-        __git_complete g __git_main
-    fi
 
     # prompt
     OS_VERSION="$(sw_vers -productName) $(sw_vers -productVersion)"
@@ -210,14 +216,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     alias ll='ls -lA'
     alias la='ls -A'
     alias sl='ls'
-
-    # pyenv
-    if [ -d $XDG_CACHE_HOME/pyenv ]; then
-        export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
-        export PATH="$PYENV_ROOT/bin:$PATH"
-        eval "$(pyenv init -)"
-        eval "$(pyenv virtualenv-init -)"
-    fi
 
     # expand path variable with tail '/' and TAB
     shopt -s direxpand

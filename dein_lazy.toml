@@ -31,13 +31,13 @@ hook_add = '''
     let g:localvimrc_ask = 0
 '''
 
-[[plugins]]
-repo = 'deoplete-plugins/deoplete-clang'
-on_ft = ['c', 'cpp']
-on_i = 1
-hook_add = '''
-    let g:deoplete#enable_at_startup = 1
-'''
+#[[plugins]]
+#repo = 'deoplete-plugins/deoplete-clang'
+#on_ft = ['c', 'cpp']
+#on_i = 1
+#hook_add = '''
+#    let g:deoplete#enable_at_startup = 1
+#'''
 
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
@@ -63,6 +63,7 @@ hook_add = '''
         \ "AccessModifierOffset" : -4,
         \ "Standard" : "C++11",
     \ }
+    set cino=g0.5s,h0.5s
 '''
 
 # Python indent
