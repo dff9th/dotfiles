@@ -197,7 +197,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
 
 
 ################################################################################
-# for CentOS7
+# for Ubuntu 18.04 / CentOS 7
 ################################################################################
 elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     # Source global definitions
