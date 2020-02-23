@@ -206,6 +206,12 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'MINGW' ]; then
 # for Ubuntu 18.04 / CentOS 7
 ################################################################################
 elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
+    # Ubuntu on WSL settings
+    if [ -e "/proc/sys/fs/binfmt_misc/WSLInterop" ]; then
+        # To use pbcopy on tmux
+        alias pbcopy="clip.exe"
+    fi
+
     # Source global definitions
     if [ -f /etc/bashrc ]; then
     	source /etc/bashrc
