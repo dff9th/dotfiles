@@ -97,3 +97,8 @@ on_ft = ['javascript']
 hook_add = '''
     noremap <C-j> :JsDoc<CR>
 '''
+
+# gitignore sytax
+[[plugins]]
+repo = 'gisphm/vim-gitignore'
+on_ft = ['gitignore']
