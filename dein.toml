@@ -93,7 +93,7 @@ hook_add = '''
     \   'javascript': ['eslint']
     \}
     let g:ale_c_gcc_options = '-I./include -Wall'
-    let g:ale_cpp_gcc_options = '-std=c++17 -I./include -Wall'
+    let g:ale_cpp_gcc_options = '-std=c++11 -I./include -Wall'
 
     " Clear linter display
     nnoremap <C-k> :ALEReset<CR>
