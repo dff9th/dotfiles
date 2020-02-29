@@ -114,3 +114,10 @@ hook_add = '''
 
 [[plugins]]
 repo = 'kana/vim-operator-user'
+
+[[plugins]]
+repo = 'embear/vim-localvimrc'
+hook_add = '''
+    let g:localvimrc_sandbox = 0
+    let g:localvimrc_ask = 0
+'''

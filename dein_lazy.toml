@@ -24,13 +24,6 @@ hook_add = '''
 repo = 'aklt/plantuml-syntax'
 on_ft = ['uml']
 
-[[plugins]]
-repo = 'embear/vim-localvimrc'
-hook_add = '''
-    let g:localvimrc_sandbox = 0
-    let g:localvimrc_ask = 0
-'''
-
 #[[plugins]]
 #repo = 'deoplete-plugins/deoplete-clang'
 #on_ft = ['c', 'cpp']
