@@ -19,6 +19,7 @@
     ll = log --oneline
     m = merge
     s = status
+    sh = switch
 [core]
     editor = $GIT_EDITOR -c \"set fenc=utf-8\"
 
