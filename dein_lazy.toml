@@ -3,22 +3,22 @@
 repo = 'cespare/vim-toml'
 on_ft = ['toml']
 
-# Preview markdown document with html 
-[[plugins]]
-repo = 'previm/previm'
-on_ft = ['md']
-hook_add = '''
-    nnoremap <silent> <C-p> :PrevimOpen<CR>
-'''
-
 # Markdown
 [[plugins]]
 repo = 'plasticboy/vim-markdown'
-on_ft = ['md']
+on_ft = ['markdown']
 hook_add = '''
     let g:vim_markdown_folding_disabled = 1
     let g:vim_markdown_new_list_item_indent = 0
 '''
+
+## Preview markdown document with html 
+#[[plugins]]
+#repo = 'previm/previm'
+#on_ft = ['md']
+#hook_add = '''
+#    nnoremap <silent> <C-p> :PrevimOpen<CR>
+#'''
 
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
