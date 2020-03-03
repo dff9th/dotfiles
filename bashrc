@@ -215,6 +215,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         if [ -e $SOLARIZED_DARK_THEME ]; then
             source $SOLARIZED_DARK_THEME
         fi
+    	echo -ne '\eP\e]12;#C0C0C0\a'   # silver cursor
     fi
 
     # Source global definitions
