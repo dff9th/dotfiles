@@ -49,8 +49,8 @@ export CARGO_DIR="$XDG_CACHE_HOME/cargo"
 if [ -d $XDG_CACHE_HOME/pyenv ]; then
     export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
-    eval "$(pyenv virtualenv-init -)"
+    eval "$(pyenv init - --no-rehash)"
+    eval "$(pyenv virtualenv-init - --norehash)"
 fi
 
 # git
@@ -215,6 +215,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         if [ -e $SOLARIZED_DARK_THEME ]; then
             source $SOLARIZED_DARK_THEME
         fi
+        echo -ne '\eP\e]12;#C0C0C0\a'   # silver cursor
     fi
 
     # Source global definitions

@@ -94,3 +94,4 @@ function! SwitchLineNumber()
     endif
 endfunction
 nnoremap <C-q> :call SwitchLineNumber()<CR>
+
