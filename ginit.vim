@@ -1,1 +1,1 @@
-Guifont Ricty Diminished:h11
+GuiFont! Ricty Diminished:h11:b
