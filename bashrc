@@ -42,8 +42,9 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # rust
-export CARGO_DIR="$XDG_CACHE_HOME/cargo"
-[ -s "$CARGO_DIR/bin" ] && export PATH="$CARGO_DIR/bin:$PATH"
+export CARGO_HOME="$XDG_CACHE_HOME/cargo"
+export RUSTUP_HOME="$XDG_CACHE_HOME/rustup"
+[ -s "$CARGO_HOME/bin" ] && export PATH="$CARGO_HOME/bin:$PATH"
 
 # pyenv
 if [ -d $XDG_CACHE_HOME/pyenv ]; then
