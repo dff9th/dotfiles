@@ -220,6 +220,10 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
 
         # Silver cursor
     	echo -ne '\eP\e]12;#C0C0C0\a'
+
+        # X server
+        export VETH_WSL_IP=$(netsh.exe interface ip show addresses "vEthernet (WSL)" | grep "IP Address:" | awk 'BEGIN{RS="\r\n"}{print $3}')
+        export DISPLAY="${VETH_WSL_IP}:0.0"
     fi
 
     # expand path variable with tail '/' and TAB

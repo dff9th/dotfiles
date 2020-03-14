@@ -95,3 +95,8 @@ hook_add = '''
 [[plugins]]
 repo = 'gisphm/vim-gitignore'
 on_ft = ['gitignore']
+
+# Rust
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
