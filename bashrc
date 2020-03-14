@@ -150,7 +150,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 
     # prompt
     OS_VERSION="$(sw_vers -productName) $(sw_vers -productVersion)"
-    export PS1="\[\e]0;\w\a\]\n\[\e[33m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
+    export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
 
 ################################################################################
 # for MSYS2 on Windows
@@ -220,6 +220,10 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
 
         # Silver cursor
     	echo -ne '\eP\e]12;#C0C0C0\a'
+
+        # X server
+        export VETH_WSL_IP=$(netsh.exe interface ip show addresses "vEthernet (WSL)" | grep "IP Address:" | awk 'BEGIN{RS="\r\n"}{print $3}')
+        export DISPLAY="${VETH_WSL_IP}:0.0"
     fi
 
     # expand path variable with tail '/' and TAB

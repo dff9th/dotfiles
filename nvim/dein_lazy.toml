@@ -88,7 +88,6 @@ hook_add = '''
 repo = 'gisphm/vim-gitignore'
 on_ft = ['gitignore']
 
-
 [[plugins]]
 repo = 'Shougo/deoplete.nvim'
 hook_source = '''
@@ -108,3 +107,8 @@ hook_source = '''
 on_i  = 1
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
+
+# Rust
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
