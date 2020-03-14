@@ -60,13 +60,8 @@ autocmd FileType * setlocal indentkeys-=0#
 augroup fileTypeIndent
     autocmd!
     autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
-    autocmd BufNewFile,BufRead *.snip set noexpandtab
+    autocmd BufNewFile,BufReadPost Makefile setlocal noexpandtab
 augroup END
-" Not expand tab to spaces on Makefile
-let _curfile=expand("%:r")
-if _curfile == 'Makefile'
-  set noexpandtab
-endif
 " Html indent
 let g:html_indent_style1 = "inc"
 
