@@ -1,4 +1,4 @@
-" dein
+" Dein
 set runtimepath+=$XDG_CACHE_HOME/dein/repos/github.com/Shougo/dein.vim
 if dein#load_state($XDG_CACHE_HOME . '/dein')
     call dein#begin($XDG_CACHE_HOME . '/dein')
@@ -60,13 +60,14 @@ autocmd FileType * setlocal indentkeys-=0#
 augroup fileTypeIndent
     autocmd!
     autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.snip set noexpandtab
 augroup END
 " Not expand tab to spaces on Makefile
 let _curfile=expand("%:r")
 if _curfile == 'Makefile'
   set noexpandtab
 endif
-" html indent
+" Html indent
 let g:html_indent_style1 = "inc"
 
 " Mapping
@@ -94,4 +95,3 @@ function! SwitchLineNumber()
     endif
 endfunction
 nnoremap <C-q> :call SwitchLineNumber()<CR>
-
