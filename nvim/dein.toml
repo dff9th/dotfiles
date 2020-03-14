@@ -97,7 +97,7 @@ hook_add = '''
 # Auto set paste at paste
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
-on_i = 1
+on_event = 'InsertEnter'
 
 [[plugins]]
 repo = 'tomasr/molokai'
