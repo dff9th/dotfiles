@@ -150,7 +150,7 @@ if [ "$(uname)" == 'Darwin' ]; then
 
     # prompt
     OS_VERSION="$(sw_vers -productName) $(sw_vers -productVersion)"
-    export PS1="\[\e]0;\w\a\]\n\[\e[33m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
+    export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
 
 ################################################################################
 # for MSYS2 on Windows
