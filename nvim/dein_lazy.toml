@@ -24,14 +24,6 @@ hook_add = '''
 repo = 'aklt/plantuml-syntax'
 on_ft = ['uml']
 
-#[[plugins]]
-#repo = 'deoplete-plugins/deoplete-clang'
-#on_ft = ['c', 'cpp']
-#on_i = 1
-#hook_add = '''
-#    let g:deoplete#enable_at_startup = 1
-#'''
-
 [[plugins]]
 repo = 'Shougo/neoinclude.vim'
 on_ft = ['c', 'cpp']
@@ -95,3 +87,24 @@ hook_add = '''
 [[plugins]]
 repo = 'gisphm/vim-gitignore'
 on_ft = ['gitignore']
+
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_source = '''
+    let g:deoplete#enable_at_startup = 1
+    set completeopt-=preview
+'''
+on_i = 1
+
+[[plugins]]
+repo = 'Shougo/neosnippet'
+hook_source = '''
+    imap <C-]> <Plug>(neosnippet_expand_or_jump)
+    smap <C-]> <Plug>(neosnippet_expand_or_jump)
+    xmap <C-]> <Plug>(neosnippet_expand_target)
+    let g:neosnippet#snippets_directory='${NVIM_HOME}/snippets/'
+'''
+on_i  = 1
+on_ft = ['snippet']
+depends = ['neosnippet-snippets']
