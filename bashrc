@@ -224,6 +224,8 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         # X server
         export VETH_WSL_IP=$(netsh.exe interface ip show addresses "vEthernet (WSL)" | grep "IP Address:" | awk 'BEGIN{RS="\r\n"}{print $3}')
         export DISPLAY="${VETH_WSL_IP}:0.0"
+        # Do follow command on PowerShell with superuser to enable X Server access from WSL2
+        # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
     fi
 
     # expand path variable with tail '/' and TAB
