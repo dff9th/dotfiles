@@ -228,6 +228,13 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
     fi
 
+    # If logined by ssh
+    if [ -f /proc/$PPID/cmdline ]; then
+        if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline")" = "sshd" ] && [[ $- == *i* ]]; then
+            export DISPLAY=:0
+        fi
+    fi
+
     # expand path variable with tail '/' and TAB
     shopt -s direxpand
 

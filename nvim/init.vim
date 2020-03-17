@@ -59,7 +59,7 @@ autocmd FileType * setlocal indentkeys-=0#
 " Change indent width by the filetype
 augroup fileTypeIndent
     autocmd!
-    autocmd BufNewFile,BufRead *.yml setlocal tabstop=2 softtabstop=2 shiftwidth=2
+    autocmd BufNewFile,BufRead *.yaml,*.yml setlocal filetype=ansible
     autocmd BufNewFile,BufReadPost Makefile setlocal noexpandtab
 augroup END
 " Html indent

@@ -104,7 +104,7 @@ hook_source = '''
     xmap <C-]> <Plug>(neosnippet_expand_target)
     let g:neosnippet#snippets_directory='${NVIM_HOME}/snippets/'
 '''
-on_i  = 1
+on_event = 'InsertEnter'
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
@@ -112,3 +112,10 @@ depends = ['neosnippet-snippets']
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
+
+# Yaml
+repo = 'chase/vim-ansible-yaml'
+hook_source = '''
+    let g:ansible_options = {'ignore_blank_lines': 0}
+'''
+on_ft = ['ansible']
