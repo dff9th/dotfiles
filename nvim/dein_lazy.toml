@@ -51,10 +51,10 @@ hook_add = '''
     set cino=g0.5s,h0.5s
 '''
 
-# Python indent
+# Python
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
-on_ft = ['py']
+on_ft = ['python']
 
 #[[plugins]]
 #repo = 'jelera/vim-javascript-syntax'
