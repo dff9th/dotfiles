@@ -51,7 +51,9 @@ if [ -d $XDG_CACHE_HOME/pyenv ]; then
     export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init - --no-rehash)"
-    eval "$(pyenv virtualenv-init - --norehash)"
+    if [ -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
+        eval "$(pyenv virtualenv-init - --norehash)"
+    fi
 fi
 
 # git
@@ -224,6 +226,15 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         # X server
         export VETH_WSL_IP=$(netsh.exe interface ip show addresses "vEthernet (WSL)" | grep "IP Address:" | awk 'BEGIN{RS="\r\n"}{print $3}')
         export DISPLAY="${VETH_WSL_IP}:0.0"
+        # Do follow command on PowerShell with superuser to enable X Server access from WSL2
+        # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
+    fi
+
+    # If logined by ssh
+    if [ -f /proc/$PPID/cmdline ]; then
+        if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline")" = "sshd" ] && [[ $- == *i* ]]; then
+            export DISPLAY=:0
+        fi
     fi
 
     # expand path variable with tail '/' and TAB

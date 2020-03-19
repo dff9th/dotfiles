@@ -51,10 +51,10 @@ hook_add = '''
     set cino=g0.5s,h0.5s
 '''
 
-# Python indent
+# Python
 [[plugins]]
 repo = 'Vimjas/vim-python-pep8-indent'
-on_ft = ['py']
+on_ft = ['python']
 
 #[[plugins]]
 #repo = 'jelera/vim-javascript-syntax'
@@ -112,3 +112,10 @@ depends = ['neosnippet-snippets']
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
+
+# Yaml
+repo = 'chase/vim-ansible-yaml'
+hook_source = '''
+    let g:ansible_options = {'ignore_blank_lines': 0}
+'''
+on_ft = ['ansible']

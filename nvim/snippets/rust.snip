@@ -81,6 +81,9 @@ snippet  atcmacro
 	test! {
 	}
 	
+	use std::cmp::max;
+	use std::cmp::min;
+
 	fn main() {
 		println!("{}", solve(&stdin!()));
 	}
@@ -89,4 +92,7 @@ snippet  atcmacro
 		input! {
 			source = src,
 		}
+
+		let ans: String = "".to_string();
+		return ans;
 	}
