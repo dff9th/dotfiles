@@ -104,7 +104,7 @@ hook_source = '''
     xmap <C-]> <Plug>(neosnippet_expand_target)
     let g:neosnippet#snippets_directory='${NVIM_HOME}/snippets/'
 '''
-on_i  = 1
+on_event = 'InsertEnter'
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
