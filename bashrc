@@ -41,6 +41,11 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# npm
+if which npm > /dev/null 2>&1; then
+    source <(npm completion)
+fi
+
 # rust
 export CARGO_HOME="$XDG_CACHE_HOME/cargo"
 export RUSTUP_HOME="$XDG_CACHE_HOME/rustup"
@@ -228,13 +233,6 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         export DISPLAY="${VETH_WSL_IP}:0.0"
         # Do follow command on PowerShell with superuser to enable X Server access from WSL2
         # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
-    fi
-
-    # If logined by ssh
-    if [ -f /proc/$PPID/cmdline ]; then
-        if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline")" = "sshd" ] && [[ $- == *i* ]]; then
-            export DISPLAY=:0
-        fi
     fi
 
     # expand path variable with tail '/' and TAB
