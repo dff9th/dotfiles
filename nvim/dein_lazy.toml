@@ -108,14 +108,14 @@ on_event = 'InsertEnter'
 on_ft = ['snippet']
 depends = ['neosnippet-snippets']
 
+# Yaml
+repo = 'pearofducks/ansible-vim'
+hook_source = '''
+    let g:ansible_unindent_after_newline = 1
+'''
+on_ft = ['yaml']
+
 # Rust
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
-
-# Yaml
-repo = 'chase/vim-ansible-yaml'
-hook_source = '''
-    let g:ansible_options = {'ignore_blank_lines': 0}
-'''
-on_ft = ['ansible']
