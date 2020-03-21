@@ -145,6 +145,15 @@ function awsstop() {
     aws ec2 stop-instances --instance-ids $(awsid $1)
 }
 
+# For aws instance
+function awslocalip() {
+    if (($# != 0)); then
+        echo "[ERROR] Usage: $FUNCNAME" >&2
+        return
+    fi
+    echo $(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+}
+
 ################################################################################
 # for Mac
 ################################################################################
@@ -235,10 +244,10 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
     fi
 
-    # expand path variable with tail '/' and TAB
+    # Expand path variable with tail '/' and TAB
     shopt -s direxpand
 
-    # history front trace
+    # History front trace
     [ -t 0 ] && stty stop undef
     [ -t 0 ] && stty start undef
 
