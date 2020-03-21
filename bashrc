@@ -41,9 +41,10 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# npm
-if which npm > /dev/null 2>&1; then
-    source <(npm completion)
+# npm completion
+NPM_COMP="$XDG_CACHE_HOME/completion/npm-completion.bash"
+if [ -e $NPM_COMP ]; then
+    . $NPM_COMP
 fi
 
 # rust
