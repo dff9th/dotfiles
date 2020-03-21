@@ -220,7 +220,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         alias pbcopy="clip.exe"
 
         # Mintty color theme 
-        SOLARIZED_DARK_THEME="$HOME/github/mintty-colors-solarized/sol.dark"
+        SOLARIZED_DARK_THEME="$XDG_CACHE_HOME/mintty-colors-solarized/sol.dark"
         if [ -e $SOLARIZED_DARK_THEME ]; then
             source $SOLARIZED_DARK_THEME
         fi
@@ -247,7 +247,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
 
     # Color ls
-    SOLARIZED_DARK_DIRCOLORS="$HOME/github/dircolors-solarized/dircolors.ansi-dark"
+    SOLARIZED_DARK_DIRCOLORS="$XDG_CACHE_HOME/dircolors-solarized/dircolors.ansi-dark"
     if [ -e $SOLARIZED_DARK_DIRCOLORS ]; then
         eval $(dircolors $SOLARIZED_DARK_DIRCOLORS)
     fi
