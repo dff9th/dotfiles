@@ -232,7 +232,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
 
     # If logined by ssh
     if [ -f /proc/$PPID/cmdline ]; then
-        if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline")" = "sshd" ] && [[ $- == *i* ]]; then
+        if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline" | tr -d '\0')" = "sshd" ] && [[ $- == *i* ]]; then
             export DISPLAY=:0
         fi
     fi
