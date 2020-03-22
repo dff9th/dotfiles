@@ -90,3 +90,5 @@ function! SwitchLineNumber()
     endif
 endfunction
 nnoremap <C-q> :call SwitchLineNumber()<CR>
+" Remove highlight by repeating ESC
+vmap  <C-n> g<C-a>

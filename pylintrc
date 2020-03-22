@@ -146,7 +146,9 @@ disable=print-statement,
         trailing-whitespace,
         line-too-long,
         bad-whitespace,
-        invalid-name
+        invalid-name,
+        unidiomatic-typecheck,
+        too-many-branches
 
 
 # Enable the message, report, category or checker with the given id(s). You can
