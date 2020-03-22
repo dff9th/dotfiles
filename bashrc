@@ -41,6 +41,12 @@ export NVM_DIR="$XDG_CACHE_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# npm completion
+NPM_COMP="$XDG_CACHE_HOME/completion/npm-completion.bash"
+if [ -e $NPM_COMP ]; then
+    . $NPM_COMP
+fi
+
 # rust
 export CARGO_HOME="$XDG_CACHE_HOME/cargo"
 export RUSTUP_HOME="$XDG_CACHE_HOME/rustup"
@@ -140,6 +146,15 @@ function awsstop() {
     aws ec2 stop-instances --instance-ids $(awsid $1)
 }
 
+# For aws instance
+function awslocalip() {
+    if (($# != 0)); then
+        echo "[ERROR] Usage: $FUNCNAME" >&2
+        return
+    fi
+    echo $(curl http://169.254.169.254/latest/meta-data/local-ipv4)
+}
+
 ################################################################################
 # for Mac
 ################################################################################
@@ -215,7 +230,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         alias pbcopy="clip.exe"
 
         # Mintty color theme 
-        SOLARIZED_DARK_THEME="$HOME/github/mintty-colors-solarized/sol.dark"
+        SOLARIZED_DARK_THEME="$XDG_CACHE_HOME/mintty-colors-solarized/sol.dark"
         if [ -e $SOLARIZED_DARK_THEME ]; then
             source $SOLARIZED_DARK_THEME
         fi
@@ -230,17 +245,10 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
     fi
 
-    # If logined by ssh
-    if [ -f /proc/$PPID/cmdline ]; then
-        if [ "$(command cut -d : -f1 < "/proc/$PPID/cmdline" | tr -d '\0')" = "sshd" ] && [[ $- == *i* ]]; then
-            export DISPLAY=:0
-        fi
-    fi
-
-    # expand path variable with tail '/' and TAB
+    # Expand path variable with tail '/' and TAB
     shopt -s direxpand
 
-    # history front trace
+    # History front trace
     [ -t 0 ] && stty stop undef
     [ -t 0 ] && stty start undef
 
@@ -249,7 +257,7 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
     export PS1="\[\e]0;\w\a\]\n\[\e[32m\]\u@\h \[\e[35m\]$OS_VERSION\[\e[0m\] \[\e[33m\]\w\[\e[0m\]\n\$ "
 
     # Color ls
-    SOLARIZED_DARK_DIRCOLORS="$HOME/github/dircolors-solarized/dircolors.ansi-dark"
+    SOLARIZED_DARK_DIRCOLORS="$XDG_CACHE_HOME/dircolors-solarized/dircolors.ansi-dark"
     if [ -e $SOLARIZED_DARK_DIRCOLORS ]; then
         eval $(dircolors $SOLARIZED_DARK_DIRCOLORS)
     fi

@@ -112,10 +112,3 @@ depends = ['neosnippet-snippets']
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 on_ft = ['rust']
-
-# Yaml
-repo = 'chase/vim-ansible-yaml'
-hook_source = '''
-    let g:ansible_options = {'ignore_blank_lines': 0}
-'''
-on_ft = ['ansible']
