@@ -149,6 +149,9 @@ disable=print-statement,
         invalid-name,
         unidiomatic-typecheck,
         too-many-branches
+        misplaced-comparison-constant,
+        too-few-public-methods,
+        chained-comparison
 
 
 # Enable the message, report, category or checker with the given id(s). You can
