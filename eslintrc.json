@@ -19,6 +19,5 @@
         "no-unused-vars": 1
     },
     "plugins": [
-        "html"
     ]
 }

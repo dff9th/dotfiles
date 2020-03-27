@@ -62,6 +62,13 @@ if [ -d $XDG_CACHE_HOME/pyenv ]; then
     fi
 fi
 
+# rbenv
+export RBENV_ROOT=$XDG_CACHE_HOME/rbenv
+if [ -d $XDG_CACHE_HOME/rbenv ]; then
+    export PATH="$RBENV_ROOT/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
 # git
 alias g='git'
 
