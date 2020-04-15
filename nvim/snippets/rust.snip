@@ -77,6 +77,20 @@ snippet  atcmacro
 			}
 		}
 	}
+
+	fn mod_pow(base: u64, exp: u64, modval: u64) -> u64 {
+	    let mut pow = 1;
+	    let mut sqrt = base;
+	    let mut left_exp = exp;
+	    while left_exp > 0 {
+	        if left_exp & 0b1 == 0b1 {
+	            pow = pow * sqrt % modval
+	        }
+	        left_exp >>= 1;
+	        sqrt = sqrt * sqrt % modval;
+	    }
+	    return pow;
+	}
 	
 	test! {
 	}
