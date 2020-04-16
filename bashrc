@@ -56,10 +56,7 @@ export RUSTUP_HOME="$XDG_CACHE_HOME/rustup"
 if [ -d $XDG_CACHE_HOME/pyenv ]; then
     export PYENV_ROOT="$XDG_CACHE_HOME/pyenv"
     export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init - --no-rehash)"
-    if [ -d $PYENV_ROOT/plugins/pyenv-virtualenv ]; then
-        eval "$(pyenv virtualenv-init - --norehash)"
-    fi
+    eval "$(pyenv init -)"
 fi
 
 # rbenv
