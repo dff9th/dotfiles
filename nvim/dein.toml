@@ -89,6 +89,7 @@ hook_add = '''
     \}
     let g:ale_c_gcc_options = '-I./include -Wall'
     let g:ale_cpp_gcc_options = '-std=c++11 -I./include -Wall'
+    let g:ale_python_auto_pipenv = 1
 
     " Clear linter display
     nnoremap <C-k> :ALEReset<CR>
