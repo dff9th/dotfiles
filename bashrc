@@ -239,20 +239,26 @@ elif [ "$(expr substr $(uname -s) 1 5)"  == 'Linux' ]; then
         # To use pbcopy on tmux
         alias pbcopy="clip.exe"
 
-        # Mintty color theme 
-        SOLARIZED_DARK_THEME="$XDG_CACHE_HOME/mintty-colors-solarized/sol.dark"
-        if [ -e $SOLARIZED_DARK_THEME ]; then
-            source $SOLARIZED_DARK_THEME
+        # Initial boot terminal
+        if [ $TERM == 'xterm-256color' ] && ! grep -q "sshd: " /proc/$PPID/cmdline; then
+            # Mintty color theme
+            SOLARIZED_DARK_THEME="$XDG_CACHE_HOME/mintty-colors-solarized/sol.dark"
+            if [ -e $SOLARIZED_DARK_THEME ]; then
+                source $SOLARIZED_DARK_THEME
+            fi
+
+            # Silver cursor
+            echo -ne '\eP\e]12;#C0C0C0\a'
         fi
 
-        # Silver cursor
-    	echo -ne '\eP\e]12;#C0C0C0\a'
-
-        # X server
-        export VETH_WSL_IP=$(netsh.exe interface ip show addresses "vEthernet (WSL)" | grep "IP Address:" | awk 'BEGIN{RS="\r\n"}{print $3}')
-        export DISPLAY="${VETH_WSL_IP}:0.0"
-        # Do follow command on PowerShell with superuser to enable X Server access from WSL2
-        # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)" 
+        # Local login terminal
+        if ! grep -q "sshd: " /proc/$PPID/cmdline; then
+            # X server
+            export VETH_WSL_IP=$(netsh.exe interface ip show addresses "vEthernet (WSL)" | grep "IP Address:" | awk 'BEGIN{RS="\r\n"}{print $3}')
+            export DISPLAY="${VETH_WSL_IP}:0.0"
+            # Do follow command on PowerShell with superuser to enable X Server access from WSL2
+            # Set-NetFirewallProfile -Name public -DisabledInterfaceAliases "vEthernet (WSL)"
+        fi
     fi
 
     # Expand path variable with tail '/' and TAB
