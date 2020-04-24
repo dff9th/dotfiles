@@ -59,6 +59,12 @@ if [ -d $XDG_CACHE_HOME/pyenv ]; then
     eval "$(pyenv init -)"
 fi
 
+# pipenv
+if which pipenv > /dev/null 2>&1; then
+    # pipenv command completion
+    eval "$(pipenv --completion)"
+fi
+
 # rbenv
 export RBENV_ROOT=$XDG_CACHE_HOME/rbenv
 if [ -d $XDG_CACHE_HOME/rbenv ]; then
