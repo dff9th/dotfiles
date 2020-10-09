@@ -56,32 +56,46 @@ hook_add = '''
 repo = 'Vimjas/vim-python-pep8-indent'
 on_ft = ['python']
 
+
+# Javascript
+## JavaScript bundle for vim, this bundle provides syntax highlighting and improved indentation
 #[[plugins]]
 #repo = 'jelera/vim-javascript-syntax'
 
-[[plugins]]
-repo = 'pangloss/vim-javascript'
-on_ft = ['javascript']
-hook_add = '''
-    let g:javascript_plugin_jsdoc = 1
-'''
+#[[plugins]]
+#repo = 'pangloss/vim-javascript'
+#on_ft = ['javascript', 'javascript.jsx']
+#hook_add = '''
+#    let g:javascript_plugin_jsdoc = 1
+#'''
 
-# Javascript ES6 syntax
+# The React syntax highlighting and indenting plugin for vim
 [[plugins]]
-repo = 'othree/yajs.vim'
-on_ft = ['javascript']
+repo = 'maxmellon/vim-jsx-pretty'
+on_ft = ['javascript', 'javascript.jsx']
 
-[[plugins]]
-repo = 'isRuslan/vim-es6'
-on_ft = ['javascript']
+## Vim syntax for styled-jsx
+#[[plugins]]
+#repo = 'alampros/vim-styled-jsx'
+#on_ft = ['javascript', 'javascript.jsx']
 
-# Add javascript comment with JsDoc
-[[plugins]]
-repo = 'heavenshell/vim-jsdoc'
-on_ft = ['javascript']
-hook_add = '''
-    noremap <C-j> :JsDoc<CR>
-'''
+## Javascript ES6 syntax
+#[[plugins]]
+#repo = 'othree/yajs.vim'
+#on_ft = ['javascript']
+
+#[[plugins]]
+#repo = 'isRuslan/vim-es6'
+#on_ft = ['javascript']
+
+## Add javascript comment with JsDoc
+#[[plugins]]
+#repo = 'heavenshell/vim-jsdoc'
+#on_ft = ['javascript']
+#hook_add = '''
+#    noremap <C-j> :JsDoc<CR>
+#'''
+
 
 # gitignore sytax
 [[plugins]]
@@ -95,6 +109,10 @@ hook_source = '''
     set completeopt-=preview
 '''
 on_event = 'InsertEnter'
+
+[[plugins]]
+#repo = 'Shougo/deoplete-lsp'
+repo = 'lighttiger2505/deoplete-vim-lsp'
 
 [[plugins]]
 repo = 'Shougo/neosnippet'

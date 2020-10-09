@@ -31,9 +31,9 @@ set incsearch                       " Incremental cursor jump in search
 set wrapscan                        " Cursor loop in search
 set hlsearch                        " Highlight match patten in find
 set expandtab                       " Convert tab character to spaces
-set tabstop=4                       " Tab width of already input tab
-set softtabstop=4                   " Tab width of new input tab
-set shiftwidth=4                    " Indent width
+set tabstop=2                       " Tab width of already input tab
+set softtabstop=2                   " Tab width of new input tab
+set shiftwidth=2                    " Indent width
 set smartindent                     " Set clang indent type
 set clipboard+=unnamed              " For share clipboard with shell
 set ambiwidth=double                " Draw multibyte character with 2-wide
