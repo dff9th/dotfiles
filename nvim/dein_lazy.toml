@@ -107,6 +107,9 @@ repo = 'Shougo/deoplete.nvim'
 hook_source = '''
     let g:deoplete#enable_at_startup = 1
     set completeopt-=preview
+    if has('win64')
+        let g:python3_host_prog = $PYTHON_HOME . '\python'
+    endif
 '''
 on_event = 'InsertEnter'
 
