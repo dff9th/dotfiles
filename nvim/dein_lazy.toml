@@ -12,13 +12,14 @@ hook_add = '''
     let g:vim_markdown_new_list_item_indent = 0
 '''
 
-## Preview markdown document with html 
-#[[plugins]]
-#repo = 'previm/previm'
-#on_ft = ['md']
-#hook_add = '''
-#    nnoremap <silent> <C-p> :PrevimOpen<CR>
-#'''
+# Preview markdown document with html
+[[plugins]]
+repo = 'previm/previm'
+on_ft = ['md']
+hook_add = '''
+    nnoremap <silent> <C-p> :PrevimOpen<CR>
+    let g:previm_open_cmd = 'google-chrome'
+'''
 
 [[plugins]]
 repo = 'aklt/plantuml-syntax'
