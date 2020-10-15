@@ -85,6 +85,9 @@ hook_add = '''
     \   'cpp' : ['gcc'],
     \   'python': ['pylint'],
     \   'javascript': ['eslint'],
+    \   'javascriptreact': ['eslint'],
+    \   'typescript': ['eslint'],
+    \   'typescriptreact': ['eslint'],
     \   'rust': ['cargo']
     \}
     let g:ale_c_gcc_options = '-I./include -Wall'
