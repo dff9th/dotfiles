@@ -65,20 +65,25 @@ on_ft = ['python']
 
 #[[plugins]]
 #repo = 'pangloss/vim-javascript'
-#on_ft = ['javascript', 'javascript.jsx']
+#on_ft = ['javascript', 'javascriptreact']
 #hook_add = '''
 #    let g:javascript_plugin_jsdoc = 1
 #'''
 
+# For tsx syntax highlight with vim-jsx-pretty
+[[plugins]]
+repo = 'HerringtonDarkholme/yats.vim'
+on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
+
 # The React syntax highlighting and indenting plugin for vim
 [[plugins]]
 repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript', 'javascript.jsx']
+on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
 
 ## Vim syntax for styled-jsx
 #[[plugins]]
 #repo = 'alampros/vim-styled-jsx'
-#on_ft = ['javascript', 'javascript.jsx']
+#on_ft = ['javascript', 'javascriptreact']
 
 ## Javascript ES6 syntax
 #[[plugins]]
