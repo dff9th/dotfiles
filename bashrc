@@ -13,6 +13,12 @@ export HISTCONTROL=erasedups
 # complete command when sudo option is set
 complete -cf sudo
 
+# Complete terraform subcommand
+TERRAFORM_COMMAND='/usr/local/bin/terraform'
+if [ -e $TERRAFORM_COMMAND ]; then
+  complete -C $TERRAFORM_COMMAND terraform
+fi
+
 # vim bind
 set -o vi
 
