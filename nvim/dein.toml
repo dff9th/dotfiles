@@ -6,33 +6,33 @@ on_cmd = ['Unite']
 repo = 'dff9th/nerdtree'
 on_cmd = ['NERDTreeToggle']
 hook_add = '''
-    nnoremap <silent><C-n> :NERDTreeToggle<CR>
+  nnoremap <silent><C-n> :NERDTreeToggle<CR>
 '''
 
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 hook_add = '''
-    let g:lightline = {
-    \   'active': {
-    \       'left': [
-    \           [ 'mode', 'paste' ],
-    \           [ 'readonly', 'filename', 'modified' ],
-    \           [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
-    \       ],
-    \   },
-    \   'component_function': {
-    \       'filename': 'LightlineFilename'
-    \   }
-    \}
-    " Draw filename with relative path
-    function! LightlineFilename()
-        let root = fnamemodify(get(b:, 'git_dir'), ':h')
-        let path = expand('%:p')
-        if path[:len(root)-1] ==# root
-        return path[len(root)+1:]
-        endif
-        return expand('%')
-    endfunction
+  let g:lightline = {
+  \   'active': {
+  \     'left': [
+  \       [ 'mode', 'paste' ],
+  \       [ 'readonly', 'filename', 'modified' ],
+  \       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
+  \     ],
+  \   },
+  \   'component_function': {
+  \     'filename': 'LightlineFilename'
+  \   }
+  \}
+  " Draw filename with relative path
+  function! LightlineFilename()
+    let root = fnamemodify(get(b:, 'git_dir'), ':h')
+    let path = expand('%:p')
+    if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+    endif
+    return expand('%')
+  endfunction
 '''
 
 # Add ale info at lightline
@@ -40,18 +40,18 @@ hook_add = '''
 repo = 'maximbaz/lightline-ale'
 depends = ['lightline.vim', 'ale']
 hook_add = '''
-    let g:lightline.component_expand = {
-    \   'linter_checking': 'lightline#ale#checking',
-    \   'linter_warnings': 'lightline#ale#warnings',
-    \   'linter_errors': 'lightline#ale#errors',
-    \   'linter_ok': 'lightline#ale#ok',
-    \}
-    let g:lightline.component_type = {
-    \   'linter_checking': 'left',
-    \   'linter_warnings': 'warning',
-    \   'linter_errors': 'error',
-    \   'linter_ok': 'left',
-    \}
+  let g:lightline.component_expand = {
+  \   'linter_checking': 'lightline#ale#checking',
+  \   'linter_warnings': 'lightline#ale#warnings',
+  \   'linter_errors': 'lightline#ale#errors',
+  \   'linter_ok': 'lightline#ale#ok',
+  \}
+  let g:lightline.component_type = {
+  \   'linter_checking': 'left',
+  \   'linter_warnings': 'warning',
+  \   'linter_errors': 'error',
+  \   'linter_ok': 'left',
+  \}
 '''
 
 # Align lines by the word position
@@ -59,11 +59,11 @@ hook_add = '''
 repo = 'h1mesuke/vim-alignta'
 on_cmd = ['Alignta']
 hook_add = '''
-    vnoremap \| :Alignta \|<CR>
-    vnoremap // :Alignta <- //<CR>
-    "vnoremap {  :Alignta {<CR>
-    vnoremap \= :Alignta =<CR>
-    vnoremap \\ :Alignta <- \\<CR>
+  vnoremap \| :Alignta \|<CR>
+  vnoremap // :Alignta <- //<CR>
+  "vnoremap {  :Alignta {<CR>
+  vnoremap \= :Alignta =<CR>
+  vnoremap \\ :Alignta <- \\<CR>
 '''
 
 [[plugins]]
@@ -77,25 +77,25 @@ if = "!has('nvim')"
 [[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
-    let g:ale_lint_on_text_changed = 'always'
-    let g:ale_lint_on_enter = 0
-    let g:ale_linters_explicit = 1
-    let g:ale_linters = {
-    \   'c' : ['gcc'],
-    \   'cpp' : ['gcc'],
-    \   'python': ['pylint'],
-    \   'javascript': ['eslint'],
-    \   'javascriptreact': ['eslint'],
-    \   'typescript': ['eslint'],
-    \   'typescriptreact': ['eslint'],
-    \   'rust': ['cargo']
-    \}
-    let g:ale_c_gcc_options = '-I./include -Wall'
-    let g:ale_cpp_gcc_options = '-std=c++11 -I./include -Wall'
-    let g:ale_python_auto_pipenv = 1
+  let g:ale_lint_on_text_changed = 'always'
+  let g:ale_lint_on_enter = 0
+  let g:ale_linters_explicit = 1
+  let g:ale_linters = {
+  \   'c' : ['gcc'],
+  \   'cpp' : ['gcc'],
+  \   'python': ['pylint'],
+  \   'javascript': ['eslint'],
+  \   'javascriptreact': ['eslint'],
+  \   'typescript': ['eslint'],
+  \   'typescriptreact': ['eslint'],
+  \   'rust': ['cargo']
+  \}
+  let g:ale_c_gcc_options = '-I./include -Wall'
+  let g:ale_cpp_gcc_options = '-std=c++11 -I./include -Wall'
+  let g:ale_python_auto_pipenv = 1
 
-    " Clear linter display
-    nnoremap <C-k> :ALEReset<CR>
+  " Clear linter display
+  nnoremap <C-k> :ALEReset<CR>
 '''
 
 # Auto set paste at paste
@@ -106,9 +106,9 @@ on_event = 'InsertEnter'
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
-    autocmd ColorScheme * highlight Comment ctermfg=28  guifg=#008800
-    autocmd ColorScheme * highlight LineNr  ctermfg=136 guifg=#d9a62e
-    colorscheme molokai
+  autocmd ColorScheme * highlight Comment ctermfg=28  guifg=#008800
+  autocmd ColorScheme * highlight LineNr  ctermfg=136 guifg=#d9a62e
+  colorscheme molokai
 '''
 
 [[plugins]]
@@ -117,39 +117,64 @@ repo = 'kana/vim-operator-user'
 [[plugins]]
 repo = 'embear/vim-localvimrc'
 hook_add = '''
-    let g:localvimrc_sandbox = 0
-    let g:localvimrc_ask = 0
+  let g:localvimrc_sandbox = 0
+  let g:localvimrc_ask = 0
 '''
 
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
-[[plugins]]
-repo = 'prabirshrestha/async.vim'
-
+# LSP
 [[plugins]]
 repo = 'prabirshrestha/vim-lsp'
 hook_add = '''
-if executable('pyls')
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': {server_info->['pyls']},
-        \ 'whitelist': ['python'],
-        \ })
-endif
+    " vim-lspの各種オプション設定
+    let g:lsp_signs_enabled = 1
+    let g:lsp_diagnostics_enabled = 1
+    let g:lsp_diagnostics_echo_cursor = 1
+    let g:lsp_virtual_text_enabled = 1
+    let g:lsp_signs_error = {'text': '✗'}
+    let g:lsp_signs_warning = {'text': '‼'}
+    let g:lsp_signs_information = {'text': 'i'}
+    let g:lsp_signs_hint = {'text': '?'}
 
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    setlocal signcolumn=yes
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> <f2> <plug>(lsp-rename)
-    " refer to doc to add more commands
-endfunction
+    if (executable('pyls'))
+        " pylsの起動定義
+        augroup LspPython
+            autocmd!
+            autocmd User lsp_setup call lsp#register_server({
+                \ 'name': 'pyls',
+                \ 'cmd': { server_info -> ['pyls'] },
+                \ 'whitelist': ['python'],
+                \})
+        augroup END
+    endif
 
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
+    " 定義ジャンプ(デフォルトのctagsによるジャンプを上書きしているのでこのあたりは好みが別れます)
+    nnoremap <C-]> :<C-u>LspDefinition<CR>
+    " 定義情報のホバー表示
+    nnoremap K :<C-u>LspHover<CR>
+    " 名前変更
+    nnoremap <LocalLeader>R :<C-u>LspRename<CR>
+    " 参照検索
+    nnoremap <LocalLeader>n :<C-u>LspReferences<CR>
+    " Lint結果をQuickFixで表示
+    nnoremap <LocalLeader>f :<C-u>LspDocumentDiagnostics<CR>
+    " テキスト整形
+    nnoremap <LocalLeader>s :<C-u>LspDocumentFormat<CR>
+    " オムニ補完を利用する場合、定義の追加
+    set omnifunc=lsp#complete
 '''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_source = '''
+    let g:deoplete#enable_at_startup = 1
+    set completeopt-=preview
+    "if has('win64')
+    "    let g:python3_host_prog = $PYTHON_HOME . '\python'
+    "endif
+'''
+
+[[plugins]]
+repo = 'lighttiger2505/deoplete-vim-lsp'
