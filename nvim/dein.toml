@@ -1,7 +1,12 @@
+# Dein settings for vim8
 [[plugins]]
-repo = 'Shougo/unite.vim'
-on_cmd = ['Unite']
+repo = 'roxma/nvim-yarp'
+if = "!has('nvim')"
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = "!has('nvim')"
 
+# Directory tree view
 [[plugins]]
 repo = 'dff9th/nerdtree'
 on_cmd = ['NERDTreeToggle']
@@ -9,100 +14,12 @@ hook_add = '''
   nnoremap <silent><C-n> :NERDTreeToggle<CR>
 '''
 
-[[plugins]]
-repo = 'itchyny/lightline.vim'
-hook_add = '''
-  let g:lightline = {
-  \   'active': {
-  \   'left': [
-  \   [ 'mode', 'paste' ],
-  \   [ 'readonly', 'filename', 'modified' ],
-  \   [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ]
-  \   ],
-  \   },
-  \   'component_function': {
-  \   'filename': 'LightlineFilename'
-  \   }
-  \}
-  " Draw filename with relative path
-  function! LightlineFilename()
-  let root = fnamemodify(get(b:, 'git_dir'), ':h')
-  let path = expand('%:p')
-  if path[:len(root)-1] ==# root
-  return path[len(root)+1:]
-  endif
-  return expand('%')
-  endfunction
-'''
-
-# Add ale info at lightline
-[[plugins]]
-repo = 'maximbaz/lightline-ale'
-depends = ['lightline.vim', 'ale']
-hook_add = '''
-  let g:lightline.component_expand = {
-  \   'linter_checking': 'lightline#ale#checking',
-  \   'linter_warnings': 'lightline#ale#warnings',
-  \   'linter_errors': 'lightline#ale#errors',
-  \   'linter_ok': 'lightline#ale#ok',
-  \}
-  let g:lightline.component_type = {
-  \   'linter_checking': 'left',
-  \   'linter_warnings': 'warning',
-  \   'linter_errors': 'error',
-  \   'linter_ok': 'left',
-  \}
-'''
-
-# Align lines by the word position
-[[plugins]]
-repo = 'h1mesuke/vim-alignta'
-on_cmd = ['Alignta']
-hook_add = '''
-  vnoremap \| :Alignta \|<CR>
-  vnoremap // :Alignta <- //<CR>
-  "vnoremap {  :Alignta {<CR>
-  vnoremap \= :Alignta =<CR>
-  vnoremap \\ :Alignta <- \\<CR>
-'''
-
-[[plugins]]
-repo = 'roxma/nvim-yarp'
-if = "!has('nvim')"
-
-[[plugins]]
-repo = 'roxma/vim-hug-neovim-rpc'
-if = "!has('nvim')"
-
-[[plugins]]
-repo = 'w0rp/ale'
-hook_add = '''
-  let g:ale_lint_on_text_changed = 'always'
-  let g:ale_lint_on_enter = 0
-  let g:ale_linters_explicit = 1
-  let g:ale_linters = {
-  \   'c' : ['gcc'],
-  \   'cpp' : ['gcc'],
-  \   'python': ['pylint'],
-  \   'javascript': ['eslint'],
-  \   'javascriptreact': ['eslint'],
-  \   'typescript': ['eslint'],
-  \   'typescriptreact': ['eslint'],
-  \   'rust': ['cargo']
-  \}
-  let g:ale_c_gcc_options = '-I./include -Wall'
-  let g:ale_cpp_gcc_options = '-std=c++11 -I./include -Wall'
-  let g:ale_python_auto_pipenv = 1
-
-  " Clear linter display
-  nnoremap <C-k> :ALEReset<CR>
-'''
-
 # Auto set paste at paste
 [[plugins]]
 repo = 'ConradIrwin/vim-bracketed-paste'
 on_event = 'InsertEnter'
 
+# Color scheme
 [[plugins]]
 repo = 'tomasr/molokai'
 hook_add = '''
@@ -111,9 +28,46 @@ hook_add = '''
   colorscheme molokai
 '''
 
+# Status line
 [[plugins]]
-repo = 'kana/vim-operator-user'
+repo = 'itchyny/lightline.vim'
+[[plugins]]
+repo = 'josa42/vim-lightline-coc'
+hook_add = '''
+  "set statusline^=%{coc#status()}
 
+  let g:lightline = {
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'readonly', 'filename', 'modified' ],
+  \     [ 'coc_errors', 'coc_warnings', 'coc_ok' ],
+  \     [ 'coc_status' ]
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'filename': 'LightlineFilename'
+  \ }
+  \}
+
+  " Draw filename with relative path
+  function! LightlineFilename()
+    let root = fnamemodify(get(b:, 'git_dir'), ':h')
+    let path = expand('%:p')
+    if path[:len(root)-1] ==# root
+      return path[len(root)+1:]
+    endif
+    return expand('%')
+  endfunction
+
+  " Use auocmd to force lightline update.
+  autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
+
+  " register compoments:
+  call lightline#coc#register()
+'''
+
+# Vim setting for any projects
 [[plugins]]
 repo = 'embear/vim-localvimrc'
 hook_add = '''
@@ -121,58 +75,19 @@ hook_add = '''
   let g:localvimrc_ask = 0
 '''
 
+# Insert snippet
 [[plugins]]
 repo = 'Shougo/neosnippet-snippets'
 
 # LSP
 [[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-hook_add ='''
-  if executable('pyls')
-    function! s:findRoot(target)
-      let dir = getcwd()
-      while 1
-        let files = split(globpath(l:dir, '*'), '\n')
-        for f in l:files
-            if a:target == fnamemodify(f, ':t')
-                return l:dir
-            endif
-        endfor
-        if l:dir == "/"
-          break
-        endif
-        let dir = fnamemodify(l:dir, ':h')
-      endwhile
-      return ""
-    endfunction
-    
-    function! s:setVenv()
-      let dir = s:findRoot('Pipfile')
-      echo l:dir
-      if dir != ""
-        let $VIRTUAL_ENV = trim(system("cd " . l:dir . "; pipenv --venv"))
-        let $PIPENV_IGNORE_VIRTUALENVS=1
-      endif
-    endfunction
-    autocmd FileType python call s:setVenv()
-
-    " pip install python-language-server
-    au User lsp_setup call lsp#register_server({
-      \ 'name': 'pyls',
-      \ 'cmd': {server_info->['pyls']},
-      \ 'allowlist': ['python'],
-      \ })
-  endif
-'''
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
+repo = 'neoclide/coc.nvim'
+rev = 'release'
 hook_add = '''
-  " Always insert new line at typing enter
-  inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() . "\<cr>" : "\<cr>"
-  " Force refresh completion
-  imap <c-f> <Plug>(asyncomplete_force_refresh)
-'''
+  " Formatting selected code.
+  xmap f <Plug>(coc-format-selected)
+  nmap f <Plug>(coc-format-selected)
 
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
+  " Run completion manuallty
+  inoremap <silent><expr> <c-f> coc#refresh()
+'''

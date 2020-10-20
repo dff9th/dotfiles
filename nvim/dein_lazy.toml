@@ -1,16 +1,16 @@
-# Toml
-[[plugins]]
-repo = 'cespare/vim-toml'
-on_ft = ['toml']
-
-# Markdown
-[[plugins]]
-repo = 'plasticboy/vim-markdown'
-on_ft = ['markdown']
-hook_add = '''
-  let g:vim_markdown_folding_disabled = 1
-  let g:vim_markdown_new_list_item_indent = 0
-'''
+## Toml
+#[[plugins]]
+#repo = 'cespare/vim-toml'
+#on_ft = ['toml']
+#
+## Markdown
+#[[plugins]]
+#repo = 'plasticboy/vim-markdown'
+#on_ft = ['markdown']
+#hook_add = '''
+#  let g:vim_markdown_folding_disabled = 1
+#  let g:vim_markdown_new_list_item_indent = 0
+#'''
 
 # Preview markdown document with html
 [[plugins]]
@@ -21,36 +21,36 @@ hook_add = '''
   let g:previm_open_cmd = 'google-chrome'
 '''
 
-[[plugins]]
-repo = 'aklt/plantuml-syntax'
-on_ft = ['uml']
+#[[plugins]]
+#repo = 'aklt/plantuml-syntax'
+#on_ft = ['uml']
+#
+#[[plugins]]
+#repo = 'Shougo/neoinclude.vim'
+#on_ft = ['c', 'cpp']
+#on_event = 'InsertEnter'
+#depends = ['deoplete.nvim']
 
-[[plugins]]
-repo = 'Shougo/neoinclude.vim'
-on_ft = ['c', 'cpp']
-on_event = 'InsertEnter'
-depends = ['deoplete.nvim']
-
-# clang-format
-[[plugins]]
-repo = 'rhysd/vim-clang-format'
-on_ft = ['c', 'cpp']
-on_map = ['<Plug>(operator-clang-format)']
-depends = ['kana/vim-operator-user']
-# Do indent by clang-format
-# Google style with indent width 4
-hook_add = '''
-  vmap f= <Plug>(operator-clang-format)
-  let g:clang_format#style_options = {
-    \ "BasedOnStyle" : 'Google',
-    \ "TabWidth" : 4,
-    \ "IndentWidth" : 4,
-    \ "UseTab" : 'Never',
-    \ "AccessModifierOffset" : -4,
-    \ "Standard" : "C++11",
-  \ }
-  set cino=g0.5s,h0.5s
-'''
+## clang-format
+#[[plugins]]
+#repo = 'rhysd/vim-clang-format'
+#on_ft = ['c', 'cpp']
+#on_map = ['<Plug>(operator-clang-format)']
+#depends = ['kana/vim-operator-user']
+## Do indent by clang-format
+## Google style with indent width 4
+#hook_add = '''
+#  vmap f= <Plug>(operator-clang-format)
+#  let g:clang_format#style_options = {
+#    \ "BasedOnStyle" : 'Google',
+#    \ "TabWidth" : 4,
+#    \ "IndentWidth" : 4,
+#    \ "UseTab" : 'Never',
+#    \ "AccessModifierOffset" : -4,
+#    \ "Standard" : "C++11",
+#  \ }
+#  set cino=g0.5s,h0.5s
+#'''
 
 ## Python indent
 #[[plugins]]
@@ -80,15 +80,15 @@ hook_add = '''
 #  let g:javascript_plugin_jsdoc = 1
 #'''
 
-# For tsx syntax highlight with vim-jsx-pretty
-[[plugins]]
-repo = 'HerringtonDarkholme/yats.vim'
-on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
-
-# The React syntax highlighting and indenting plugin for vim
-[[plugins]]
-repo = 'maxmellon/vim-jsx-pretty'
-on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
+## For tsx syntax highlight with vim-jsx-pretty
+#[[plugins]]
+#repo = 'HerringtonDarkholme/yats.vim'
+#on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
+#
+## The React syntax highlighting and indenting plugin for vim
+#[[plugins]]
+#repo = 'maxmellon/vim-jsx-pretty'
+#on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
 
 ## Vim syntax for styled-jsx
 #[[plugins]]
@@ -112,25 +112,24 @@ on_ft = ['javascript', 'javascriptreact', 'typescript', 'typescriptreact']
 #  noremap <C-j> :JsDoc<CR>
 #'''
 
-
-# gitignore sytax
-[[plugins]]
-repo = 'gisphm/vim-gitignore'
-on_ft = ['gitignore']
-
-[[plugins]]
-repo = 'Shougo/neosnippet'
-hook_source = '''
-  imap <C-]> <Plug>(neosnippet_expand_or_jump)
-  smap <C-]> <Plug>(neosnippet_expand_or_jump)
-  xmap <C-]> <Plug>(neosnippet_expand_target)
-  let g:neosnippet#snippets_directory='${NVIM_HOME}/snippets/'
-'''
-on_event = 'InsertEnter'
-on_ft = ['snippet']
-depends = ['neosnippet-snippets']
-
-# Rust
-[[plugins]]
-repo = 'rust-lang/rust.vim'
-on_ft = ['rust']
+## gitignore sytax
+#[[plugins]]
+#repo = 'gisphm/vim-gitignore'
+#on_ft = ['gitignore']
+#
+#[[plugins]]
+#repo = 'Shougo/neosnippet'
+#hook_source = '''
+#  imap <C-]> <Plug>(neosnippet_expand_or_jump)
+#  smap <C-]> <Plug>(neosnippet_expand_or_jump)
+#  xmap <C-]> <Plug>(neosnippet_expand_target)
+#  let g:neosnippet#snippets_directory='${NVIM_HOME}/snippets/'
+#'''
+#on_event = 'InsertEnter'
+#on_ft = ['snippet']
+#depends = ['neosnippet-snippets']
+#
+## Rust
+#[[plugins]]
+#repo = 'rust-lang/rust.vim'
+#on_ft = ['rust']
