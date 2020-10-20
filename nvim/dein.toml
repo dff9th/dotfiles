@@ -151,6 +151,7 @@ hook_add ='''
       echo l:dir
       if dir != ""
         let $VIRTUAL_ENV = trim(system("cd " . l:dir . "; pipenv --venv"))
+        let $PIPENV_IGNORE_VIRTUALENVS=1
       endif
     endfunction
     autocmd FileType python call s:setVenv()
