@@ -28,7 +28,47 @@ hook_add = '''
   colorscheme molokai
 '''
 
-# Status line
+# Vim setting for any projects
+[[plugins]]
+repo = 'embear/vim-localvimrc'
+hook_add = '''
+  let g:localvimrc_sandbox = 0
+  let g:localvimrc_ask = 0
+'''
+
+# Insert snippet
+[[plugins]]
+repo = 'Shougo/neosnippet-snippets'
+
+# LSP with coc
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+hook_add = '''
+  "" Coc memo:
+  " 'coc-python' uses python-language-server in default.
+  "
+  " You need to set up pip/pipenv and install:
+  " - python-language-server (include jedi)
+  " - pylint
+  " - yapf
+
+  " Extensions
+  let g:coc_global_extensions = [
+    \'coc-python',
+    \'coc-json',
+    \'coc-toml'
+    \]
+
+  " Format whole/selected code
+  nmap = <Plug>(coc-format-selected)
+  vmap = <Plug>(coc-format-selected)
+
+  " Run completion manuallty
+  inoremap <silent><expr> <c-f> coc#refresh()
+'''
+
+# Status line with coc
 [[plugins]]
 repo = 'itchyny/lightline.vim'
 [[plugins]]
@@ -60,34 +100,9 @@ hook_add = '''
     return expand('%')
   endfunction
 
-  " Use auocmd to force lightline update.
+  " Use autocmd to force lightline update
   autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
-  " register compoments:
+  " Register compoments
   call lightline#coc#register()
-'''
-
-# Vim setting for any projects
-[[plugins]]
-repo = 'embear/vim-localvimrc'
-hook_add = '''
-  let g:localvimrc_sandbox = 0
-  let g:localvimrc_ask = 0
-'''
-
-# Insert snippet
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
-
-# LSP
-[[plugins]]
-repo = 'neoclide/coc.nvim'
-rev = 'release'
-hook_add = '''
-  " Formatting selected code.
-  xmap f <Plug>(coc-format-selected)
-  nmap f <Plug>(coc-format-selected)
-
-  " Run completion manuallty
-  inoremap <silent><expr> <c-f> coc#refresh()
 '''
