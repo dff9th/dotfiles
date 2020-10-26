@@ -175,6 +175,10 @@ function awslocalip() {
 # for Mac
 ################################################################################
 if [ "$(uname)" == 'Darwin' ]; then
+  # history front trace
+  [ -t 0 ] && stty stop undef
+  [ -t 0 ] && stty start undef
+
   # ls alias
   alias ls='ls -G'
   alias ll='ls -lA'
