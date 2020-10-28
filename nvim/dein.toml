@@ -61,8 +61,8 @@ hook_add = '''
     \]
 
   " Format whole/selected code
-  nmap = <Plug>(coc-format-selected)
-  vmap = <Plug>(coc-format-selected)
+  nnoremap = :call CocAction('format')<CR>
+  vnoremap = <Plug>(coc-format-selected)
 
   " Run completion manuallty
   inoremap <silent><expr> <c-f> coc#refresh()
