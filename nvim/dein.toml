@@ -57,7 +57,11 @@ hook_add = '''
   let g:coc_global_extensions = [
     \'coc-python',
     \'coc-json',
-    \'coc-toml'
+    \'coc-toml',
+    \'coc-prettier',
+    \'coc-eslint'
+    "\'coc-tsserver',
+    "\'coc-vetur',
     \]
 
   " Format whole/selected code
@@ -66,6 +70,12 @@ hook_add = '''
 
   " Run completion manuallty
   inoremap <silent><expr> <c-f> coc#refresh()
+
+  " Jump to definition
+  nnoremap <C-f> <Plug>(coc-definition)
+
+  " Hover
+  nnoremap <C-b> :call CocAction('doHover')<CR>
 '''
 
 # Status line with coc
