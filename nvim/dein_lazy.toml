@@ -104,13 +104,13 @@ hook_add = '''
 #repo = 'isRuslan/vim-es6'
 #on_ft = ['javascript']
 
-## Add javascript comment with JsDoc
-#[[plugins]]
-#repo = 'heavenshell/vim-jsdoc'
-#on_ft = ['javascript']
-#hook_add = '''
-#  noremap <C-j> :JsDoc<CR>
-#'''
+# Auto generation javascript comment with JsDoc
+[[plugins]]
+repo = 'heavenshell/vim-jsdoc'
+on_ft = ['javascript']
+hook_add = '''
+  noremap <C-j> :JsDoc<CR>
+'''
 
 ## gitignore sytax
 #[[plugins]]

@@ -42,15 +42,16 @@ elif which vim > /dev/null 2>&1; then
   export GIT_EDITOR='vim'
 fi
 
-# nvm
-export NVM_DIR="$XDG_CACHE_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Volta
+VOLTA_HOME="$XDG_CACHE_HOME/volta"
+if [ -d $VOLTA_HOME ]; then
+  export VOLTA_HOME
+  export PATH="$VOLTA_HOME/bin:$PATH"
+fi
 
-# npm completion
-NPM_COMP="$XDG_CACHE_HOME/completion/npm-completion.bash"
-if [ -e $NPM_COMP ]; then
-  . $NPM_COMP
+# Npm completion
+if which node > /dev/null 2>&1; then
+  source <(npm completion)
 fi
 
 # rust

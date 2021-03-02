@@ -59,8 +59,8 @@ hook_add = '''
     \'coc-json',
     \'coc-toml',
     \'coc-prettier',
-    \'coc-eslint'
-    "\'coc-tsserver',
+    \'coc-eslint',
+    \'coc-tsserver',
     "\'coc-vetur',
     \]
 
